@@ -6,4 +6,4 @@ This is an undergraduate proof-of-concept final project. This prototype is a non
 This game is developed using Unity game engine.
 
 ## About us
-The classmates reponsible for this prototype are **Sidney Luiz Freitas Reis** and **Lucas Fialho de Souza**, Computer Science bachelor students of the **Pontificial Catholic University of Rio Grande do Sul** (Brazil) under the advising of **Professor Soraia Musse**.
+The classmates responsible for this prototype are **Sidney Luiz Freitas Reis** and **Lucas Fialho de Souza**, Computer Science bachelor students of the **Pontificial Catholic University of Rio Grande do Sul** (Brazil) under the advising of **Professor Soraia Musse**.
