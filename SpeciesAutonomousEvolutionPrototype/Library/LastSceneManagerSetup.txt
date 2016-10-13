@@ -1,4 +1,7 @@
 sceneSetups:
-- path: Assets/naosei.unity
+- path: Assets/title_scene.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/naosei.unity
+  isLoaded: 0
+  isActive: 0
