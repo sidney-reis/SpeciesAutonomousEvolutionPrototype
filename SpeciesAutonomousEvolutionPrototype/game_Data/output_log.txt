@@ -18,20 +18,20 @@ Platform assembly: C:\Users\sid-r\Documents\Unity Projects\SpeciesAutonomousEvol
 Loading C:\Users\sid-r\Documents\Unity Projects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\sid-r\Documents\Unity Projects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\game_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\sid-r\Documents\Unity Projects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\game_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.185 seconds
+- Completed reload, in  0.065 seconds
 Platform assembly: C:\Users\sid-r\Documents\Unity Projects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\game_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\sid-r\Documents\Unity Projects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\game_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.766258 ms
+UnloadTime: 0.737660 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 2df8 -> priority: 1 
-  Thread -> id: b14 -> priority: 1 
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 7.042976 ms
+  Thread -> id: 3070 -> priority: 1 
+  Thread -> id: 2cdc -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.477996 ms
 
-Unloading 21 unused Assets to reduce memory usage. Loaded Objects now: 402.
-Total: 0.492385 ms (FindLiveObjects: 0.039596 ms CreateObjectMapping: 0.049861 ms MarkObjects: 0.154351 ms  DeleteObjects: 0.247842 ms)
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 491.
+Total: 0.470020 ms (FindLiveObjects: 0.025297 ms CreateObjectMapping: 0.026030 ms MarkObjects: 0.206046 ms  DeleteObjects: 0.211545 ms)
 
