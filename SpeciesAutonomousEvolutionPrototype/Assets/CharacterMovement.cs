@@ -21,7 +21,7 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.x = (float)(position.x + 0.1);
+                // position.x = (float)(position.x + 0.1);
                 position.z = (float)(position.z + 0.1);
                 this.transform.position = position;
             }
@@ -30,14 +30,14 @@ public class CharacterMovement : MonoBehaviour {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
                 position.x = (float)(position.x - 0.1);
-                position.z = (float)(position.z + 0.1);
+                // position.z = (float)(position.z + 0.1);
                 this.transform.position = position;
             }
             if (Input.GetKey(KeyCode.S))
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.x = (float)(position.x - 0.1);
+                // position.x = (float)(position.x - 0.1);
                 position.z = (float)(position.z - 0.1);
                 this.transform.position = position;
             }
@@ -46,7 +46,7 @@ public class CharacterMovement : MonoBehaviour {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
                 position.x = (float)(position.x + 0.1);
-                position.z = (float)(position.z - 0.1);
+                // position.z = (float)(position.z - 0.1);
                 this.transform.position = position;
             }
 
