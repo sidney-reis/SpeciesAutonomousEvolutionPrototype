@@ -25,7 +25,7 @@ public class CharacterMovement : MonoBehaviour {
                 position.z = (float)(position.z + 0.1);
                 this.transform.position = position;
                 PlayerInfo.steps++;
-                Debug.Log(PlayerInfo.steps);
+                //Debug.Log(PlayerInfo.steps);
             }
             if (Input.GetKey(KeyCode.A))
             {
@@ -35,7 +35,7 @@ public class CharacterMovement : MonoBehaviour {
                 // position.z = (float)(position.z + 0.1);
                 this.transform.position = position;
                 PlayerInfo.steps++;
-                Debug.Log(PlayerInfo.steps);
+                //Debug.Log(PlayerInfo.steps);
             }
             if (Input.GetKey(KeyCode.S))
             {
@@ -45,7 +45,7 @@ public class CharacterMovement : MonoBehaviour {
                 position.z = (float)(position.z - 0.1);
                 this.transform.position = position;
                 PlayerInfo.steps++;
-                Debug.Log(PlayerInfo.steps);
+                //Debug.Log(PlayerInfo.steps);
             }
             if (Input.GetKey(KeyCode.D))
             {
@@ -55,7 +55,7 @@ public class CharacterMovement : MonoBehaviour {
                 // position.z = (float)(position.z - 0.1);
                 this.transform.position = position;
                 PlayerInfo.steps++;
-                Debug.Log(PlayerInfo.steps);
+                //Debug.Log(PlayerInfo.steps);
             }
 
             if ((!Input.GetKey(KeyCode.W)) & (!Input.GetKey(KeyCode.A)) & (!Input.GetKey(KeyCode.S)) & (!Input.GetKey(KeyCode.D)))
