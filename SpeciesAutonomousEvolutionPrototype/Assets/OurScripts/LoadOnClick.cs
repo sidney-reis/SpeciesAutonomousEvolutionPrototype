@@ -7,6 +7,6 @@ public class LoadOnClick: MonoBehaviour {
     {
         SceneManager.LoadScene(1);
         PlayerInfo.selectedSpecies = species;
-        Debug.Log("species: " + PlayerInfo.selectedSpecies);
+        //Debug.Log("species: " + PlayerInfo.selectedSpecies);
     }
 }

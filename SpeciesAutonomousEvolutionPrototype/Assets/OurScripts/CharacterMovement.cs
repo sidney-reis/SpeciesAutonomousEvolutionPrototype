@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour {
     void Start () {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        anim.SetInteger("selectedSpecies", PlayerInfo.selectedSpecies);
     }
 	
 	// Update is called once per frame
