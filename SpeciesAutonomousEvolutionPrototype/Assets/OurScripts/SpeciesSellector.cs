@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SpeciesSellector : MonoBehaviour {
-    public static int selectedCharacter = 0;
+    public static int selectedCharacter = -1;
     //public static Camera mainCam;
     // Use this for initialization
     void Start () {

@@ -314,6 +314,7 @@ GameObject:
   - component: {fileID: 105838269}
   - component: {fileID: 105838268}
   - component: {fileID: 105838267}
+  - component: {fileID: 105838273}
   m_Layer: 0
   m_Name: 1
   m_TagString: ControllableSpecies
@@ -425,6 +426,18 @@ Transform:
   m_Father: {fileID: 676181233}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &105838273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 105838266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8622f9c0e9a924f8c1cd699ab7181a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementRemaining: 300
 --- !u!1 &119392406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1404,7 @@ GameObject:
   - component: {fileID: 474619716}
   - component: {fileID: 474619715}
   - component: {fileID: 474619714}
+  - component: {fileID: 474619720}
   m_Layer: 0
   m_Name: 3
   m_TagString: ControllableSpecies
@@ -1502,6 +1516,18 @@ Transform:
   m_Father: {fileID: 676181233}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &474619720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 474619713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8622f9c0e9a924f8c1cd699ab7181a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementRemaining: 300
 --- !u!4 &489315591 stripped
 Transform:
   m_PrefabParentObject: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
@@ -2371,6 +2397,7 @@ GameObject:
   - component: {fileID: 1120682865}
   - component: {fileID: 1120682867}
   - component: {fileID: 1120682862}
+  - component: {fileID: 1120682866}
   m_Layer: 0
   m_Name: 0
   m_TagString: ControllableSpecies
@@ -2465,6 +2492,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+--- !u!114 &1120682866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1120682860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8622f9c0e9a924f8c1cd699ab7181a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementRemaining: 300
 --- !u!95 &1120682867
 Animator:
   serializedVersion: 3
@@ -3765,7 +3804,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Starvation:'
+  m_Text: 'Fatigue:'
 --- !u!222 &1633864444
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3929,7 +3968,7 @@ GameObject:
   - component: {fileID: 1738135694}
   - component: {fileID: 1738135693}
   m_Layer: 5
-  m_Name: StarvationText
+  m_Name: FatigueText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4071,6 +4110,7 @@ GameObject:
   - component: {fileID: 1767975188}
   - component: {fileID: 1767975187}
   - component: {fileID: 1767975186}
+  - component: {fileID: 1767975192}
   m_Layer: 0
   m_Name: 5
   m_TagString: ControllableSpecies
@@ -4182,6 +4222,18 @@ Transform:
   m_Father: {fileID: 676181233}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1767975192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1767975185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8622f9c0e9a924f8c1cd699ab7181a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementRemaining: 300
 --- !u!1 &1774124369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4492,6 +4544,7 @@ GameObject:
   - component: {fileID: 1958068343}
   - component: {fileID: 1958068342}
   - component: {fileID: 1958068341}
+  - component: {fileID: 1958068347}
   m_Layer: 0
   m_Name: 4
   m_TagString: ControllableSpecies
@@ -4603,6 +4656,18 @@ Transform:
   m_Father: {fileID: 676181233}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1958068347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1958068340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8622f9c0e9a924f8c1cd699ab7181a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementRemaining: 300
 --- !u!1001 &1992771347
 Prefab:
   m_ObjectHideFlags: 0
@@ -4682,6 +4747,7 @@ GameObject:
   - component: {fileID: 2010389124}
   - component: {fileID: 2010389123}
   - component: {fileID: 2010389122}
+  - component: {fileID: 2010389128}
   m_Layer: 0
   m_Name: 2
   m_TagString: ControllableSpecies
@@ -4793,6 +4859,18 @@ Transform:
   m_Father: {fileID: 676181233}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010389128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2010389121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8622f9c0e9a924f8c1cd699ab7181a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementRemaining: 300
 --- !u!1001 &2027323588
 Prefab:
   m_ObjectHideFlags: 0
