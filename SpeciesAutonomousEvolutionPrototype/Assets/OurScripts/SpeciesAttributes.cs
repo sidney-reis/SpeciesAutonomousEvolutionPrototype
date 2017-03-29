@@ -12,15 +12,6 @@ public class SpeciesAttributes : MonoBehaviour {
     //{
     //}
 
-    void OnCollisionEnter(Collision target)
-    {
-        if (target.gameObject.tag.Equals("Food") == true)
-        {
-            hungry = 100;
-            target.gameObject.SetActive(false);
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {

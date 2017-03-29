@@ -8,6 +8,22 @@ public class CharacterMovement : MonoBehaviour {
     SpeciesAttributes attributes;
     Text fatigueText;
     int character;
+    FoodRespawn foodRespawn;
+
+    void OnCollisionEnter(Collision target)
+    {
+        if (target.gameObject.tag.Equals("Food") == true)
+        {
+            attributes.hungry = 100;
+            RespawningFood foodTarget = new RespawningFood();
+            foodTarget.food = target.gameObject;
+            foodTarget.respawningTime = 100;
+            Debug.Log("Food respawn: " +foodRespawn);
+            Debug.Log("food respawning: " + foodRespawn.foodRespawning);
+            foodRespawn.foodRespawning.Add(foodTarget);
+            target.gameObject.SetActive(false);
+        }
+    }
 
     void Start () {
         rb = GetComponent<Rigidbody>();
@@ -17,6 +33,7 @@ public class CharacterMovement : MonoBehaviour {
         fatigueText = GameObject.Find("FatigueText").GetComponent<Text>();
         fatigueText.text = attributes.movementRemaining.ToString();
         character = int.Parse(gameObject.name);
+        foodRespawn = GetComponent<FoodRespawn>();
     }
 	
 	// Update is called once per frame
