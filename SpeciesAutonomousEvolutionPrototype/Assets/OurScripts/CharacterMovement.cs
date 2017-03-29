@@ -7,6 +7,7 @@ public class CharacterMovement : MonoBehaviour {
     public Rigidbody rb;
     SpeciesAttributes attributes;
     Text fatigueText;
+    int character;
 
     void Start () {
         rb = GetComponent<Rigidbody>();
@@ -15,12 +16,12 @@ public class CharacterMovement : MonoBehaviour {
         attributes = GetComponent<SpeciesAttributes>();
         fatigueText = GameObject.Find("FatigueText").GetComponent<Text>();
         fatigueText.text = attributes.movementRemaining.ToString();
+        character = int.Parse(gameObject.name);
     }
 	
 	// Update is called once per frame
 	void Update () {
         rb.velocity = new Vector3(0, -10, 0);
-        int character= int.Parse(gameObject.name);
         
         if(character == SpeciesSellector.selectedCharacter)
         {

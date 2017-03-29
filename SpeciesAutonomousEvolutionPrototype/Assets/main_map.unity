@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.40584013, g: 0.4683174, b: 0.48397183, a: 1}
+  m_IndirectSpecularColor: {r: 0.40584686, g: 0.46829593, b: 0.4839735, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 105838268}
   - component: {fileID: 105838267}
   - component: {fileID: 105838273}
+  - component: {fileID: 105838274}
   m_Layer: 0
   m_Name: 1
   m_TagString: ControllableSpecies
@@ -420,7 +421,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 105838266}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.097397, y: -2.8007622, z: -0.7961149}
+  m_LocalPosition: {x: -43.097397, y: -16.6, z: -7.2}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 676181233}
@@ -438,6 +439,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementRemaining: 300
+  hungry: 300
+  life: 100
+--- !u!114 &105838274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 105838266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &119392406
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,6 +942,35 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
   m_PrefabInternal: {fileID: 2027323588}
+--- !u!1 &356646631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 356646632}
+  m_Layer: 0
+  m_Name: Food
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &356646632
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 356646631}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 95.6089, y: 10.8249445, z: 12.687961}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 937131883}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &367162338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,6 +1448,7 @@ GameObject:
   - component: {fileID: 474619715}
   - component: {fileID: 474619714}
   - component: {fileID: 474619720}
+  - component: {fileID: 474619721}
   m_Layer: 0
   m_Name: 3
   m_TagString: ControllableSpecies
@@ -1510,7 +1554,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 474619713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.607395, y: -2.8007622, z: 2.8838844}
+  m_LocalPosition: {x: -41.73, y: -16.1, z: 2.8838844}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 676181233}
@@ -1528,6 +1572,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementRemaining: 300
+  hungry: 300
+  life: 100
+--- !u!114 &474619721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 474619713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &489315591 stripped
 Transform:
   m_PrefabParentObject: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
@@ -2303,6 +2360,95 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 393b236c42954a640b513d46de90ac38, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &937131882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 937131883}
+  - component: {fileID: 937131885}
+  - component: {fileID: 937131884}
+  - component: {fileID: 937131886}
+  m_Layer: 0
+  m_Name: fruit0
+  m_TagString: Food
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &937131883
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937131882}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 11.73, y: -7.15, z: 0.63}
+  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 356646632}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &937131884
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937131882}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 0320041574006e44ab4811e6eddd11e0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+--- !u!65 &937131885
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937131882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 0.8, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &937131886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937131882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1392570e6fcd28741930fc2ef0008536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &948350798 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
@@ -2398,6 +2544,7 @@ GameObject:
   - component: {fileID: 1120682867}
   - component: {fileID: 1120682862}
   - component: {fileID: 1120682866}
+  - component: {fileID: 1120682868}
   m_Layer: 0
   m_Name: 0
   m_TagString: ControllableSpecies
@@ -2462,7 +2609,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1120682860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -46.107395, y: 1.7392387, z: 0.9038849}
+  m_LocalPosition: {x: -30.7, y: -16.5, z: 7.59}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 676181233}
@@ -2503,7 +2650,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b8622f9c0e9a924f8c1cd699ab7181a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementRemaining: 300
+  movementRemaining: 300000
+  hungry: 100
+  life: 100
 --- !u!95 &1120682867
 Animator:
   serializedVersion: 3
@@ -2521,6 +2670,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1120682868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1120682860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1188257939
 Prefab:
   m_ObjectHideFlags: 0
@@ -3328,7 +3488,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Attack Power:'
+  m_Text: 'Hungry:'
 --- !u!222 &1426167766
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3892,7 +4052,7 @@ GameObject:
   - component: {fileID: 1681554345}
   - component: {fileID: 1681554344}
   m_Layer: 5
-  m_Name: AttackText
+  m_Name: HungryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4111,6 +4271,7 @@ GameObject:
   - component: {fileID: 1767975187}
   - component: {fileID: 1767975186}
   - component: {fileID: 1767975192}
+  - component: {fileID: 1767975193}
   m_Layer: 0
   m_Name: 5
   m_TagString: ControllableSpecies
@@ -4216,7 +4377,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1767975185}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -52.247395, y: -2.8007622, z: 4.373884}
+  m_LocalPosition: {x: -52.43, y: -16.9, z: -7.03}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 676181233}
@@ -4234,6 +4395,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementRemaining: 300
+  hungry: 300
+  life: 100
+--- !u!114 &1767975193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1767975185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1774124369
 GameObject:
   m_ObjectHideFlags: 0
@@ -4545,6 +4719,7 @@ GameObject:
   - component: {fileID: 1958068342}
   - component: {fileID: 1958068341}
   - component: {fileID: 1958068347}
+  - component: {fileID: 1958068348}
   m_Layer: 0
   m_Name: 4
   m_TagString: ControllableSpecies
@@ -4650,7 +4825,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1958068340}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.727394, y: -2.8007622, z: -3.836115}
+  m_LocalPosition: {x: -37.727394, y: -16.06, z: -3.836115}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 676181233}
@@ -4668,6 +4843,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementRemaining: 300
+  hungry: 300
+  life: 100
+--- !u!114 &1958068348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1958068340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1992771347
 Prefab:
   m_ObjectHideFlags: 0
@@ -4748,6 +4936,7 @@ GameObject:
   - component: {fileID: 2010389123}
   - component: {fileID: 2010389122}
   - component: {fileID: 2010389128}
+  - component: {fileID: 2010389129}
   m_Layer: 0
   m_Name: 2
   m_TagString: ControllableSpecies
@@ -4853,7 +5042,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2010389121}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.817394, y: -2.8007622, z: -2.086115}
+  m_LocalPosition: {x: -32.98, y: -16.25, z: -2.086115}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 676181233}
@@ -4871,6 +5060,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementRemaining: 300
+  hungry: 300
+  life: 100
+--- !u!114 &2010389129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2010389121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2027323588
 Prefab:
   m_ObjectHideFlags: 0
