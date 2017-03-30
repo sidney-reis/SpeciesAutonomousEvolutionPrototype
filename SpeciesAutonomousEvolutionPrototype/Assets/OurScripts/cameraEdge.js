@@ -26,12 +26,12 @@ function Update()
      
     if ((Input.mousePosition.y > theScreenHeight - Boundary) && Input.mousePosition.y < theScreenHeight)
     {
-        transform.position.y += (10 * (speed * Time.deltaTime));
+        transform.position.z += (10 * (speed * Time.deltaTime));
     }
      
     if ((Input.mousePosition.y < 0 + Boundary) && Input.mousePosition.y > 0)
     {
-        transform.position.y -= (10 * (speed * Time.deltaTime));
+        transform.position.z -= (10 * (speed * Time.deltaTime));
     }
      
 }    
