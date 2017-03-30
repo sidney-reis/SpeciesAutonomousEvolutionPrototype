@@ -11,24 +11,27 @@ public class RespawningFood
 public class FoodRespawn : MonoBehaviour {
     //int respawnTime = 100;
     // Use this for initialization
-    public ArrayList foodRespawning = new ArrayList();
+    public static List<RespawningFood> foodRespawning = new List<RespawningFood>();
 
-	//void Start () {
-		
-	//}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start()
+    {
+        //Debug.Log(foodRespawning);
+    }
+
+    // Update is called once per frame
+    void Update () {
+        //Debug.Log("foodresp count"+foodRespawning.Count);
+        //Debug.Log(""foodRespawning)
         //Debug.Log("active: " + gameObject.activeSelf);
-		if(foodRespawning.Count > 1)
+		if(foodRespawning.Count > 0)
         {
-            foreach(RespawningFood food in foodRespawning)
+            for(int i = foodRespawning.Count-1; i >= 0; i--)
             {
-                food.respawningTime--;
-                if(food.respawningTime == 0)
+                foodRespawning[i].respawningTime--;
+                if(foodRespawning[i].respawningTime == 0)
                 {
-                    food.food.SetActive(true);
-                    foodRespawning.Remove(food);
+                    foodRespawning[i].food.SetActive(true);
+                    foodRespawning.Remove(foodRespawning[i]);
                 }
             }
             //Debug.Log("sumiu "+respawnTime);
