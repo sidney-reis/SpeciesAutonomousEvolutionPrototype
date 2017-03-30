@@ -1,6 +1,6 @@
 ﻿#pragma strict
  
-public var Boundary : int = 25;
+public var Boundary : int = 15;
 public var speed : int = 20;
  
 private var theScreenWidth : int;
@@ -14,22 +14,22 @@ function Start()
  
 function Update() 
 {
-    if (Input.mousePosition.x > theScreenWidth - Boundary)
+    if ((Input.mousePosition.x > theScreenWidth - Boundary) && Input.mousePosition.x < theScreenWidth)
     {
         transform.position.x += (10 * (speed * Time.deltaTime));
     }
      
-    if (Input.mousePosition.x < 0 + Boundary)
+    if ((Input.mousePosition.x < 0 + Boundary) && Input.mousePosition.x > 0)
     {
         transform.position.x -= (10 * (speed * Time.deltaTime));
     }
      
-    if (Input.mousePosition.y > theScreenHeight - Boundary)
+    if ((Input.mousePosition.y > theScreenHeight - Boundary) && Input.mousePosition.y < theScreenHeight)
     {
         transform.position.y += (10 * (speed * Time.deltaTime));
     }
      
-    if (Input.mousePosition.y < 0 + Boundary)
+    if ((Input.mousePosition.y < 0 + Boundary) && Input.mousePosition.y > 0)
     {
         transform.position.y -= (10 * (speed * Time.deltaTime));
     }
