@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class RandomFoodGenerator : MonoBehaviour {
@@ -53,7 +52,7 @@ public class RandomFoodGenerator : MonoBehaviour {
             foodBox.size = foodBoxSize;
             SpriteRenderer foodSprite = foodObject.AddComponent<SpriteRenderer>();
             int randomFruitNumber = Random.Range(4, 7);
-            Sprite fruitSprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/Food/fruta"+randomFruitNumber+".png", typeof(Sprite));
+            Sprite fruitSprite = Resources.Load<Sprite>("fruta"+randomFruitNumber);//(Sprite)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets /Food/fruta"+randomFruitNumber+".png", typeof(Sprite));
             foodSprite.sprite = fruitSprite;
             foodObject.tag = "RandomFood";
 
