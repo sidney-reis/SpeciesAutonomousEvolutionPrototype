@@ -9,7 +9,6 @@ public class RandomFoodGenerator : MonoBehaviour {
     Vector3 terrainSize;
     Terrain terrain;
 
-    // Use this for initialization
     void Start ()
     {
         randomFoodCount = 0;
@@ -52,7 +51,7 @@ public class RandomFoodGenerator : MonoBehaviour {
             foodBox.size = foodBoxSize;
             SpriteRenderer foodSprite = foodObject.AddComponent<SpriteRenderer>();
             int randomFruitNumber = Random.Range(4, 7);
-            Sprite fruitSprite = Resources.Load<Sprite>("fruta"+randomFruitNumber);//(Sprite)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets /Food/fruta"+randomFruitNumber+".png", typeof(Sprite));
+            Sprite fruitSprite = Resources.Load<Sprite>("fruta"+randomFruitNumber);
             foodSprite.sprite = fruitSprite;
             foodObject.tag = "RandomFood";
 
@@ -62,9 +61,4 @@ public class RandomFoodGenerator : MonoBehaviour {
             randomFoodCount++;
         }
     }
-
-	// Update is called once per frame
-	void Update ()
-    {
-	}
 }

@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class SpeciesSellector : MonoBehaviour {
-    public static int selectedCharacter = -1;
     //public static Camera mainCam;
     // Use this for initialization
     void Start () {
@@ -22,7 +21,7 @@ public class SpeciesSellector : MonoBehaviour {
                 if (hitInfo.transform.gameObject.tag == "ControllableSpecies")
                 {
                     Debug.Log("Selecting Character");
-                    selectedCharacter = int.Parse(hitInfo.transform.gameObject.name);
+                    PlayerInfo.selectedCreature = int.Parse(hitInfo.transform.gameObject.name);
                     //mainCam.transform.position = new Vector3(transform.position.x, transform.position.y, mainCam.transform.position.z);
                 }
                 else

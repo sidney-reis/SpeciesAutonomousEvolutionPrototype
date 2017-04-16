@@ -1,7 +1,0 @@
-sceneSetups:
-- path: Assets/title_scene.unity
-  isLoaded: 0
-  isActive: 0
-- path: Assets/main_map.unity
-  isLoaded: 1
-  isActive: 1

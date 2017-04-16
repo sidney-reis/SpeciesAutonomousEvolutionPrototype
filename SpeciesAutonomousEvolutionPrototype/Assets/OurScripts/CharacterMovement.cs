@@ -41,7 +41,7 @@ public class CharacterMovement : MonoBehaviour {
 	void Update () {
         rb.velocity = new Vector3(0, -10, 0);
         
-        if(character == SpeciesSellector.selectedCharacter)
+        if((character == PlayerInfo.selectedCreature)&&(!attributes.dying))
         {
             if (Input.GetKey(KeyCode.W) && attributes.movementRemaining > 0)
             {

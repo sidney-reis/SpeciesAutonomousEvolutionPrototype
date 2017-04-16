@@ -10,7 +10,6 @@ public class HungryScript : MonoBehaviour {
     SpeciesAttributes attributes;
     int character;
 
-    // Use this for initialization
     void Start ()
     {
         attributes = GetComponent<SpeciesAttributes>();
@@ -19,7 +18,6 @@ public class HungryScript : MonoBehaviour {
         character = int.Parse(gameObject.name);
     }
 	
-	// Update is called once per frame
 	void Update () {
         frames++;
         if(frames % 30 == 0)
@@ -33,7 +31,7 @@ public class HungryScript : MonoBehaviour {
             {
                 attributes.life--;
             }
-            if (character == SpeciesSellector.selectedCharacter)
+            if (character == PlayerInfo.selectedCreature)
             {
                 hungryText.text = attributes.hungry.ToString();
                 lifeText.text = attributes.life.ToString();
