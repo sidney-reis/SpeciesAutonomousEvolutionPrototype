@@ -451,7 +451,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 105838266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 414aabad966bd734f80fca82c1e1ba47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &119392406
@@ -1610,7 +1610,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 474619713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 414aabad966bd734f80fca82c1e1ba47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &489315591 stripped
@@ -2776,7 +2776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementRemaining: 300000
-  hungry: 100
+  hungry: 300
   life: 100
   dying: 0
   libido: 0
@@ -2805,7 +2805,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1120682860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 414aabad966bd734f80fca82c1e1ba47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1188257939
@@ -4732,7 +4732,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1767975185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 414aabad966bd734f80fca82c1e1ba47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1774124369
@@ -5194,7 +5194,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1958068340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 414aabad966bd734f80fca82c1e1ba47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1992771347
@@ -5494,7 +5494,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2010389121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf4378ad0f29294ca17855693de01c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 414aabad966bd734f80fca82c1e1ba47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2027323588
