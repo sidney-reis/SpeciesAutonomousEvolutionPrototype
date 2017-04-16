@@ -9,7 +9,7 @@ public class Breed : MonoBehaviour {
         GameObject activeCreature = GameObject.Find("PlayerCreatures/" + PlayerInfo.selectedCreature.ToString()).gameObject;
         GameObject passiveCreature = GameObject.Find("PlayerCreatures/" + PlayerInfo.selectedMenuCreature.ToString()).gameObject;
 
-        if (activeCreature.GetComponent<SpeciesAttributes>().libido < 10)
+        if (activeCreature.GetComponent<SpeciesAttributes>().libido < 100)
         {
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").SetActive(true);
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").GetComponent<Text>().text = "Not enough libido!";
