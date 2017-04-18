@@ -8,6 +8,7 @@ TagManager:
   - Fire
   - Food
   - RandomFood
+  - Terrain
   layers:
   - Default
   - TransparentFX

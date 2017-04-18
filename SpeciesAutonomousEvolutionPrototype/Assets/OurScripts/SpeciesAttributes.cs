@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeciesAttributes : MonoBehaviour {
-    public int movementRemaining = 300;
+    public static int MAX_MOVEMENT = 3000;
+
+    [HideInInspector]
+    public int movementRemaining;
     public int hungry = 100;
     public int life = 100;
     public bool dying = false;
     public int libido = 0;
+    
+    void Start ()
+    {
+        movementRemaining = MAX_MOVEMENT;
+    }
 
     void Update()
     {

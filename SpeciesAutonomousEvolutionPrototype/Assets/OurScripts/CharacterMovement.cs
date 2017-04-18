@@ -62,6 +62,8 @@ public class CharacterMovement : MonoBehaviour {
                 PlayerInfo.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
+                SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+                sprite.flipX = true;
             }
             if (Input.GetKey(KeyCode.S) && attributes.movementRemaining > 0)
             {
@@ -82,12 +84,14 @@ public class CharacterMovement : MonoBehaviour {
                 PlayerInfo.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
+                SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+                sprite.flipX = false;
             }
 
             if ((!Input.GetKey(KeyCode.W)) & (!Input.GetKey(KeyCode.A)) & (!Input.GetKey(KeyCode.S)) & (!Input.GetKey(KeyCode.D)))
             {
                 anim.SetBool("walking", false);
-                if (attributes.movementRemaining < 300)
+                if (attributes.movementRemaining < SpeciesAttributes.MAX_MOVEMENT)
                 {
                     attributes.movementRemaining++;
                     fatigueText.text = attributes.movementRemaining.ToString();
