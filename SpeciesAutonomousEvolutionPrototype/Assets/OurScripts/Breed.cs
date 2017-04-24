@@ -9,7 +9,7 @@ public class Breed : MonoBehaviour {
         GameObject activeCreature = GameObject.Find("PlayerCreatures/" + PlayerInfo.selectedCreature.ToString()).gameObject;
         GameObject passiveCreature = GameObject.Find("PlayerCreatures/" + PlayerInfo.selectedMenuCreature.ToString()).gameObject;
 
-        if (activeCreature.GetComponent<SpeciesAttributes>().libido < 100)
+        if (activeCreature.GetComponent<SpeciesAttributes>().libido < 25)
         {
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").SetActive(true);
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").GetComponent<Text>().text = "Not enough libido!";
@@ -24,6 +24,38 @@ public class Breed : MonoBehaviour {
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").GetComponent<Text>().text = "";
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").SetActive(false);
 
+            double normalizedSteps;
+            if(PlayerTime.currentSeconds == PlayerTime.totalSeconds)
+            {
+                normalizedSteps = PlayerModel.CurrentModel.steps / PlayerTime.currentSeconds;
+            }
+            else
+            {
+                normalizedSteps = ((PlayerModel.CurrentModel.steps / PlayerTime.currentSeconds) + (PlayerModel.LegacyModel.steps / PlayerTime.totalSeconds)) / 2;
+            }
+            
+            int newbornMovemet = 0;
+            if(activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 0 && normalizedSteps >= 50)
+            {
+                newbornMovemet = 1;
+            }
+            else if(activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 1 && normalizedSteps >= 75)
+            {
+                newbornMovemet = 2;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 1 && normalizedSteps >= 50)
+            {
+                newbornMovemet = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 2 && normalizedSteps < 75)
+            {
+                newbornMovemet = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 2 && normalizedSteps >= 75)
+            {
+                newbornMovemet = 2;
+            }
+
             Vector3 childPosition = new Vector3();
             Vector3 childRotation;
             Vector3 childScale;
@@ -36,6 +68,18 @@ public class Breed : MonoBehaviour {
             childScale.y = 5;
             childScale.z = 1;
             GameObject childObject = new GameObject(PlayerInfo.playerCreaturesCount.ToString());
+
+            //SpriteRenderer childSprite = childObject.AddComponent<SpriteRenderer>();
+            //Sprite creatureSprite = Resources.Load<Sprite>("species_" + PlayerInfo.selectedSpecies.ToString() + "_default");
+            //childSprite.sprite = creatureSprite;
+
+            Animator childAnimator = childObject.AddComponent<Animator>();
+            childAnimator.runtimeAnimatorController = Resources.Load("playerSpeciesController") as RuntimeAnimatorController;
+            childAnimator.updateMode = AnimatorUpdateMode.Normal;
+            childAnimator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+
+            childAnimator.SetInteger("movementUpgrade", newbornMovemet);
+
             childObject.transform.parent = GameObject.Find("PlayerCreatures").transform;
             childObject.transform.rotation = Quaternion.Euler(childRotation);
             childObject.transform.localScale = childScale;
@@ -59,20 +103,17 @@ public class Breed : MonoBehaviour {
             childRigidbody.isKinematic = false;
             childRigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
             childRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-            SpriteRenderer childSprite = childObject.AddComponent<SpriteRenderer>();
-            Sprite creatureSprite = Resources.Load<Sprite>("species_"+PlayerInfo.selectedSpecies.ToString()+"_default");
-            childSprite.sprite = creatureSprite;
             childObject.tag = "ControllableSpecies";
             Terrain terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
-            childPosition.y = terrain.SampleHeight(childPosition) + childBoxSize.y + 1;
+            childPosition.y = terrain.SampleHeight(childPosition) + 7;
             childObject.transform.position = childPosition;
-            Animator childAnimator = childObject.AddComponent<Animator>();
-            childAnimator.runtimeAnimatorController = Resources.Load("playerSpeciesController") as RuntimeAnimatorController;
-            childAnimator.updateMode = AnimatorUpdateMode.Normal;
-            childAnimator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
-            childObject.AddComponent<SpeciesAttributes>();
+
+            SpeciesAttributes childAttributes = childObject.AddComponent<SpeciesAttributes>();
+            childAttributes.movementUpgrade = newbornMovemet;
             childObject.AddComponent<AttributeUpdater>();
             childObject.AddComponent<CharacterMovement>();
+            childObject.AddComponent<FixRotation>();
+            childObject.AddComponent<PlayerAutonomousBehavior>();
 
             activeCreature.GetComponent<SpeciesAttributes>().libido -= 100;
             PlayerInfo.playerCreaturesCount++;

@@ -25,32 +25,26 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         if (!attributes.dying && !isWalking && character != PlayerInfo.selectedCreature && !resting)
         {
             float randomValue = Random.value;
-            Debug.Log(randomValue);
             if (randomValue < 0.7)
             {
                 Vector3 randomCircle = Random.insideUnitCircle * 20;
-                Debug.Log(randomCircle);
 
                 if (randomCircle.x < 0 && randomCircle.x > -10.0f)
                 {
                     randomCircle.x = -10.0f;
-                    Debug.Log("x virou -10");
                 }
                 else if (randomCircle.x > 0 && randomCircle.x < 10.0f)
                 {
                     randomCircle.x = 10.0f;
-                    Debug.Log("x virou 10");
                 }
 
                 if (randomCircle.y < 0 && randomCircle.y > -10.0f)
                 {
                     randomCircle.y = -10.0f;
-                    Debug.Log("y virou -10");
                 }
                 else if (randomCircle.y > 0 && randomCircle.y < 10.0f)
                 {
                     randomCircle.y = 10.0f;
-                    Debug.Log("y virou 10");
                 }
 
                 destination = new Vector3(gameObject.transform.position.x + randomCircle.x, gameObject.transform.position.y, gameObject.transform.position.z + randomCircle.y);
@@ -142,7 +136,6 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 gameObject.transform.position = newPosition;
                 attributes.movementRemaining--;
             }
-            Debug.Log("walkup: " + walkUp + " walkside: " + walkSide);
         }
     }
 
@@ -152,7 +145,6 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         {
             isWalking = false;
             anim.SetBool("walking", false);
-            Debug.Log("colidiu com " + target.gameObject.tag);
         }
     }
 }

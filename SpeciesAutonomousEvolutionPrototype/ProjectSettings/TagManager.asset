@@ -9,6 +9,7 @@ TagManager:
   - Food
   - RandomFood
   - Terrain
+  - InvisibleWall
   layers:
   - Default
   - TransparentFX

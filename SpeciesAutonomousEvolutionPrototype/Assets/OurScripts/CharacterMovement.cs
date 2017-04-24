@@ -8,6 +8,8 @@ public class CharacterMovement : MonoBehaviour {
     SpeciesAttributes attributes;
     Text fatigueText;
     int character;
+    Vector3 updatedSpriteSize;
+    SpriteRenderer spriteRenderer;
 
     void OnCollisionEnter(Collision target)
     {
@@ -32,24 +34,34 @@ public class CharacterMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         anim.SetInteger("selectedSpecies", PlayerInfo.selectedSpecies);
+
         attributes = GetComponent<SpeciesAttributes>();
         fatigueText = GameObject.Find("FatigueText").GetComponent<Text>();
         fatigueText.text = attributes.movementRemaining.ToString();
         character = int.Parse(gameObject.name);
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 	
 	void Update () {
         rb.velocity = new Vector3(0, -10, 0);
+
+        if(spriteRenderer.sprite != null)
+        {
+            updatedSpriteSize = spriteRenderer.sprite.bounds.size;
+            updatedSpriteSize.z = 4;
+            gameObject.GetComponent<BoxCollider>().size = updatedSpriteSize;
+            gameObject.GetComponent<BoxCollider>().center = new Vector3(0, 0, 0);
+        }
         
-        if((character == PlayerInfo.selectedCreature)&&(!attributes.dying))
+        if ((character == PlayerInfo.selectedCreature)&&(!attributes.dying))
         {
             if (Input.GetKey(KeyCode.W) && attributes.movementRemaining > 0)
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.z = (float)(position.z + 0.1);
+                position.z = (float)(position.z + (0.1 + attributes.movementUpgrade * 0.05));
                 this.transform.position = position;
-                PlayerInfo.steps++;
+                PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
             }
@@ -57,9 +69,9 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.x = (float)(position.x - 0.1);
+                position.x = (float)(position.x - (0.1 + attributes.movementUpgrade * 0.05));
                 this.transform.position = position;
-                PlayerInfo.steps++;
+                PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
                 SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
@@ -69,9 +81,9 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.z = (float)(position.z - 0.1);
+                position.z = (float)(position.z - (0.1 + attributes.movementUpgrade * 0.05));
                 this.transform.position = position;
-                PlayerInfo.steps++;
+                PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
             }
@@ -79,9 +91,9 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.x = (float)(position.x + 0.1);
+                position.x = (float)(position.x + (0.1 + attributes.movementUpgrade * 0.05));
                 this.transform.position = position;
-                PlayerInfo.steps++;
+                PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
                 SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
