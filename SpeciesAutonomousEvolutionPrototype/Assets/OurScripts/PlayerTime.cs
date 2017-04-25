@@ -15,4 +15,9 @@ public class PlayerTime : MonoBehaviour {
         totalSeconds++;
         currentSeconds++;
     }
+
+    public static void triggerBreed()
+    {
+        currentSeconds = 0;
+    }
 }

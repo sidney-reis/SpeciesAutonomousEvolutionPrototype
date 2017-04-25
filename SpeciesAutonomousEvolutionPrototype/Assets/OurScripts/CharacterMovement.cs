@@ -21,12 +21,18 @@ public class CharacterMovement : MonoBehaviour {
             foodTarget.respawningTime = 100;
             FoodRespawn.foodRespawning.Add(foodTarget);
             target.gameObject.SetActive(false);
+
+            PlayerModel.CurrentModel.foods++;
+            Debug.Log("foods: " + PlayerModel.CurrentModel.foods);
         }
         if(target.gameObject.tag.Equals("RandomFood") == true)
         {
             attributes.hungry = 100;
             Destroy(target.gameObject);
             RandomFoodGenerator.randomFoodCount--;
+
+            PlayerModel.CurrentModel.foods++;
+            Debug.Log("foods: " + PlayerModel.CurrentModel.foods);
         }
     }
 

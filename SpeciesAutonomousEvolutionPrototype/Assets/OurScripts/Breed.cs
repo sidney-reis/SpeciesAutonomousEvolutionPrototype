@@ -25,13 +25,19 @@ public class Breed : MonoBehaviour {
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").SetActive(false);
 
             double normalizedSteps;
+            double normalizedFoods;
             if(PlayerTime.currentSeconds == PlayerTime.totalSeconds)
             {
                 normalizedSteps = PlayerModel.CurrentModel.steps / PlayerTime.currentSeconds;
+                normalizedFoods = PlayerModel.CurrentModel.foods / PlayerTime.currentSeconds;
+                Debug.Log("current foods on breed: " + PlayerModel.CurrentModel.foods);
+                Debug.Log("current seconds on breed: " + PlayerTime.currentSeconds);
+
             }
             else
             {
                 normalizedSteps = ((PlayerModel.CurrentModel.steps / PlayerTime.currentSeconds) + (PlayerModel.LegacyModel.steps / PlayerTime.totalSeconds)) / 2;
+                normalizedFoods = ((PlayerModel.CurrentModel.foods / PlayerTime.currentSeconds) + (PlayerModel.LegacyModel.foods / PlayerTime.totalSeconds)) / 2;
             }
             
             int newbornMovemet = 0;
@@ -55,6 +61,31 @@ public class Breed : MonoBehaviour {
             {
                 newbornMovemet = 2;
             }
+            newbornMovemet = 0;
+
+            int newbornPerception = 0;
+            if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 0 && normalizedFoods >= 0.01666)
+            {
+                newbornPerception = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 1 && normalizedFoods >= 0.025)
+            {
+                newbornPerception = 2;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 1 && normalizedFoods >= 0.01666)
+            {
+                newbornPerception = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 2 && normalizedFoods < 0.025)
+            {
+                newbornPerception = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 2 && normalizedFoods >= 0.025)
+            {
+                newbornPerception = 2;
+            }
+            Debug.Log("newbornPerception: " + newbornPerception);
+            Debug.Log("normalizedFoods: " + normalizedFoods);
 
             Vector3 childPosition = new Vector3();
             Vector3 childRotation;
@@ -69,7 +100,7 @@ public class Breed : MonoBehaviour {
             childScale.z = 1;
             GameObject childObject = new GameObject(PlayerInfo.playerCreaturesCount.ToString());
 
-            //SpriteRenderer childSprite = childObject.AddComponent<SpriteRenderer>();
+            childObject.AddComponent<SpriteRenderer>();
             //Sprite creatureSprite = Resources.Load<Sprite>("species_" + PlayerInfo.selectedSpecies.ToString() + "_default");
             //childSprite.sprite = creatureSprite;
 
@@ -77,8 +108,9 @@ public class Breed : MonoBehaviour {
             childAnimator.runtimeAnimatorController = Resources.Load("playerSpeciesController") as RuntimeAnimatorController;
             childAnimator.updateMode = AnimatorUpdateMode.Normal;
             childAnimator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
-
+            
             childAnimator.SetInteger("movementUpgrade", newbornMovemet);
+            childAnimator.SetInteger("perceptionUpgrade", newbornPerception);
 
             childObject.transform.parent = GameObject.Find("PlayerCreatures").transform;
             childObject.transform.rotation = Quaternion.Euler(childRotation);
@@ -110,6 +142,7 @@ public class Breed : MonoBehaviour {
 
             SpeciesAttributes childAttributes = childObject.AddComponent<SpeciesAttributes>();
             childAttributes.movementUpgrade = newbornMovemet;
+            childAttributes.perceptionUpgrade = newbornPerception;
             childObject.AddComponent<AttributeUpdater>();
             childObject.AddComponent<CharacterMovement>();
             childObject.AddComponent<FixRotation>();
@@ -117,6 +150,9 @@ public class Breed : MonoBehaviour {
 
             activeCreature.GetComponent<SpeciesAttributes>().libido -= 100;
             PlayerInfo.playerCreaturesCount++;
+
+            PlayerModel.triggerBreed();
+            PlayerTime.triggerBreed();
         }
     }
 }

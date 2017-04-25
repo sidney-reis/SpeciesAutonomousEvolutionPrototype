@@ -8,7 +8,8 @@ public class SpeciesAttributes : MonoBehaviour {
     [HideInInspector]
     public int movementRemaining;
     public int movementUpgrade = 0;
-    public int hungry = 100;
+    public int perceptionUpgrade = 0;
+    public int hungry = 300;
     public int life = 100;
     public bool dying = false;
     public int libido = 0;
