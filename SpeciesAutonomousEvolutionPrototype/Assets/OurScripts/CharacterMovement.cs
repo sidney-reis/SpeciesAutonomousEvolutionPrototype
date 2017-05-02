@@ -72,9 +72,6 @@ public class CharacterMovement : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.W) && attributes.movementRemaining > 0)
             {
-                var graphToScan = AstarPath.active.data.gridGraph;
-                AstarPath.active.Scan(graphToScan);
-
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
                 position.z = (float)(position.z + (0.1 + attributes.movementUpgrade * 0.05));

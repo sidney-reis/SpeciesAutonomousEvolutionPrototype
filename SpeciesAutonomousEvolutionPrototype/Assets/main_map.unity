@@ -455,7 +455,7 @@ MonoBehaviour:
   movementRemaining: 300
   movementUpgrade: 0
   perceptionUpgrade: 0
-  perceptionRay: 100
+  perceptionRay: 9999900
   hungry: 300
   life: 100
   dying: 0
@@ -1745,7 +1745,7 @@ MonoBehaviour:
   movementRemaining: 300
   movementUpgrade: 0
   perceptionUpgrade: 0
-  perceptionRay: 100
+  perceptionRay: 9999900
   hungry: 300
   life: 100
   dying: 0
@@ -3086,7 +3086,7 @@ MonoBehaviour:
   movementRemaining: 300000
   movementUpgrade: 0
   perceptionUpgrade: 0
-  perceptionRay: 100
+  perceptionRay: 9999900
   hungry: 300
   life: 100
   dying: 0
@@ -5173,7 +5173,7 @@ MonoBehaviour:
   movementRemaining: 300
   movementUpgrade: 0
   perceptionUpgrade: 0
-  perceptionRay: 100
+  perceptionRay: 9999900
   hungry: 300
   life: 100
   dying: 0
@@ -5791,7 +5791,7 @@ MonoBehaviour:
   movementRemaining: 300
   movementUpgrade: 0
   perceptionUpgrade: 0
-  perceptionRay: 100
+  perceptionRay: 9999900
   hungry: 300
   life: 100
   dying: 0
@@ -6122,7 +6122,7 @@ MonoBehaviour:
   movementRemaining: 300
   movementUpgrade: 0
   perceptionUpgrade: 0
-  perceptionRay: 100
+  perceptionRay: 9999900
   hungry: 300
   life: 100
   dying: 0
