@@ -61,7 +61,6 @@ public class Breed : MonoBehaviour {
             {
                 newbornMovemet = 2;
             }
-            newbornMovemet = 0;
 
             int newbornPerception = 0;
             if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 0 && normalizedFoods >= 0.01666)

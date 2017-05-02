@@ -15,25 +15,34 @@ public class CharacterMovement : MonoBehaviour {
     {
         if (target.gameObject.tag.Equals("Food") == true)
         {
-            attributes.hungry = 100;
+            foodEaten();
             RespawningFood foodTarget = new RespawningFood();
             foodTarget.food = target.gameObject;
             foodTarget.respawningTime = 100;
             FoodRespawn.foodRespawning.Add(foodTarget);
             target.gameObject.SetActive(false);
-
-            PlayerModel.CurrentModel.foods++;
-            Debug.Log("foods: " + PlayerModel.CurrentModel.foods);
         }
         if(target.gameObject.tag.Equals("RandomFood") == true)
         {
-            attributes.hungry = 100;
+            foodEaten();
             Destroy(target.gameObject);
             RandomFoodGenerator.randomFoodCount--;
+        }
+    }
 
+    private void foodEaten()
+    {
+        attributes.hungry += 200;
+        if (attributes.hungry > 300)
+        {
+            attributes.hungry = 300;
+        }
+        if (character == PlayerInfo.selectedCreature)
+        {
             PlayerModel.CurrentModel.foods++;
             Debug.Log("foods: " + PlayerModel.CurrentModel.foods);
         }
+
     }
 
     void Start () {
@@ -63,6 +72,9 @@ public class CharacterMovement : MonoBehaviour {
         {
             if (Input.GetKey(KeyCode.W) && attributes.movementRemaining > 0)
             {
+                var graphToScan = AstarPath.active.data.gridGraph;
+                AstarPath.active.Scan(graphToScan);
+
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
                 position.z = (float)(position.z + (0.1 + attributes.movementUpgrade * 0.05));
