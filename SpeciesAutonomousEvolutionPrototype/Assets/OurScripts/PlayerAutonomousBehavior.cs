@@ -25,7 +25,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     }
 
     void WanderOrStay ()
-    {
+    {/*
         if (!attributes.dying && !isWalking && character != PlayerInfo.selectedCreature && !resting && !huntingFood)
         {
             float randomValue = Random.value;
@@ -33,7 +33,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             {
                 Wander();
             }
-        }
+        }*/
     }
 
     void Wander()
@@ -63,7 +63,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     }
     
     void HuntForFood ()
-    {
+    {/*
         GameObject closestObject = null;
         if (attributes.hungry < 150 && !foundFood)
         {
@@ -104,7 +104,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         else if(foundFood && closestObject.activeSelf == false)
         {
             foundFood = false;
-        }
+        }*/
     }
     
     private void setWalk()
@@ -137,6 +137,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
     void Update ()
     {
+        /*
         if(character == PlayerInfo.selectedCreature)
         {
             isWalking = false;
@@ -195,6 +196,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 attributes.movementRemaining--;
             }
         }
+        */
     }
 
     void OnCollisionEnter(Collision target)
