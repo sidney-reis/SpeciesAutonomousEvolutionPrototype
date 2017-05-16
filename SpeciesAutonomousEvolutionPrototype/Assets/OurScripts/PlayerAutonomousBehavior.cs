@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerAutonomousBehavior : MonoBehaviour {
     private Animator anim;
@@ -14,6 +15,8 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     Vector3 destination;
     float walkSide = 0;
     float walkUp = 0;
+    NavMeshAgent agent;
+    NavMeshObstacle obstacle;
 
     void Start () {
         anim = GetComponent<Animator>();
@@ -22,10 +25,12 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         float randomStart = Random.value * 3;
         InvokeRepeating("WanderOrStay", randomStart, 3);
         InvokeRepeating("HuntForFood", randomStart, 1);
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        obstacle = gameObject.GetComponent<NavMeshObstacle>();
     }
 
     void WanderOrStay ()
-    {/*
+    {
         if (!attributes.dying && !isWalking && character != PlayerInfo.selectedCreature && !resting && !huntingFood)
         {
             float randomValue = Random.value;
@@ -33,7 +38,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             {
                 Wander();
             }
-        }*/
+        }
     }
 
     void Wander()
@@ -63,9 +68,9 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     }
     
     void HuntForFood ()
-    {/*
+    {
         GameObject closestObject = null;
-        if (attributes.hungry < 150 && !foundFood)
+        if (attributes.hungry < 280 && !foundFood)
         {
             huntingFood = true;
             if (!attributes.dying && !isWalking && character != PlayerInfo.selectedCreature && !resting)
@@ -87,14 +92,22 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                     destination = closestObject.transform.position;
                     foundFood = true;
                     var seeker = GetComponent<Seeker>();
-                    setWalk();
+
+                    agent.enabled = true;
+                    obstacle.enabled = false;
+
+                    anim.SetBool("walking", true);
+                    agent.SetDestination(closestObject.transform.position);
                 }
             }
         }
-        else if(foundFood && attributes.hungry > 150)
+        else if(foundFood && attributes.hungry > 280)
         {
             foundFood = false;
             huntingFood = false;
+            anim.SetBool("walking", false);
+            agent.enabled = false;
+            obstacle.enabled = true;
             Wander();
         }
         else if(foundFood && closestObject == null)
@@ -104,7 +117,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         else if(foundFood && closestObject.activeSelf == false)
         {
             foundFood = false;
-        }*/
+        }
     }
     
     private void setWalk()
@@ -137,7 +150,6 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
     void Update ()
     {
-        /*
         if(character == PlayerInfo.selectedCreature)
         {
             isWalking = false;
@@ -196,7 +208,6 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 attributes.movementRemaining--;
             }
         }
-        */
     }
 
     void OnCollisionEnter(Collision target)
@@ -204,7 +215,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         if(target.gameObject.tag != "Terrain")
         {
             isWalking = false;
-            anim.SetBool("walking", false);
+            if(!huntingFood && !foundFood)
+            {
+                anim.SetBool("walking", false);
+            }
         }
     }
 }

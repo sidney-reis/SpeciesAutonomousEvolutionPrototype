@@ -5,17 +5,24 @@ using UnityEngine.AI;
 
 public class AutonomousMovement : MonoBehaviour
 {
-    NavMeshPath pathToFruit;
+    NavMeshAgent agent;
     void Start()
     {
-        gameObject.GetComponent<NavMeshAgent>().CalculatePath(GameObject.Find("Food/fruit0").transform.position, pathToFruit);
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        agent.SetDestination(GameObject.Find("Food/fruit0").transform.position);
     }
 
     void Update()
     {
-        for (int i = 0; i < pathToFruit.corners.Length; i++)
+        if (!agent.pathPending)
         {
-            gameObject.transform.position = pathToFruit.corners[i];
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    // Done
+                }
+            }
         }
     }
 }
