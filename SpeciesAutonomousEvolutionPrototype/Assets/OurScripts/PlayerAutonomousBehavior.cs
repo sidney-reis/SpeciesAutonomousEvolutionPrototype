@@ -1,5 +1,4 @@
-﻿using Pathfinding;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +9,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     int character;
     bool isWalking = false;
     bool resting = false;
+    bool fastResting = true;
     bool huntingFood = false;
     bool foundFood = false;
     Vector3 destination;
@@ -17,6 +17,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     float walkUp = 0;
     NavMeshAgent agent;
     NavMeshObstacle obstacle;
+    SpriteRenderer sprite;
 
     void Start () {
         anim = GetComponent<Animator>();
@@ -27,6 +28,16 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         InvokeRepeating("HuntForFood", randomStart, 1);
         agent = gameObject.GetComponent<NavMeshAgent>();
         obstacle = gameObject.GetComponent<NavMeshObstacle>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
+        Debug.Log("sprite size: " + sprite.bounds.size);
+
+        StartCoroutine(SetAgentOffset(1));
+    }
+
+    IEnumerator SetAgentOffset(float time)
+    {
+        yield return new WaitForSeconds(time);
+        agent.baseOffset = (sprite.bounds.size.y) / 10;
     }
 
     void WanderOrStay ()
@@ -70,7 +81,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     void HuntForFood ()
     {
         GameObject closestObject = null;
-        if (attributes.hungry < 280 && !foundFood)
+        if (attributes.hungry < 280 && !foundFood && !fastResting && character != PlayerInfo.selectedCreature)
         {
             huntingFood = true;
             if (!attributes.dying && !isWalking && character != PlayerInfo.selectedCreature && !resting)
@@ -91,25 +102,30 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 {
                     destination = closestObject.transform.position;
                     foundFood = true;
-                    var seeker = GetComponent<Seeker>();
 
                     agent.enabled = true;
+                    agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
                     obstacle.enabled = false;
 
                     anim.SetBool("walking", true);
+
+                    if (character == 6)
+                    {
+                        Debug.Log("comida proxima: "+closestObject.transform.name+" posicao: "+closestObject.transform.position);
+                    }
                     agent.SetDestination(closestObject.transform.position);
                 }
             }
         }
-        else if(foundFood && attributes.hungry > 280)
-        {
-            foundFood = false;
-            huntingFood = false;
-            anim.SetBool("walking", false);
-            agent.enabled = false;
-            obstacle.enabled = true;
-            Wander();
-        }
+        //else if(foundFood && attributes.hungry >= 280)
+        //{
+        //    foundFood = false;
+        //    huntingFood = false;
+        //    anim.SetBool("walking", false);
+        //    agent.enabled = false;
+        //    obstacle.enabled = true;
+        //    Wander();
+        //}
         else if(foundFood && closestObject == null)
         {
             foundFood = false;
@@ -117,6 +133,17 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         else if(foundFood && closestObject.activeSelf == false)
         {
             foundFood = false;
+        }
+
+        if((attributes.hungry >= 280) && (huntingFood == true))
+        {
+            foundFood = false;
+            huntingFood = false;
+            anim.SetBool("walking", false);
+            agent.Stop();
+            agent.enabled = false;
+            obstacle.enabled = true;
+            Wander();
         }
     }
     
@@ -153,8 +180,16 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         if(character == PlayerInfo.selectedCreature)
         {
             isWalking = false;
+            foundFood = false;
+            huntingFood = false;
+            if (agent.enabled == true)
+            {
+                agent.Stop();
+                agent.enabled = false;
+            }
+            obstacle.enabled = true;
         }
-        else if(!isWalking)
+        else if(!isWalking && !agent.enabled)
         {
             if (attributes.movementRemaining < SpeciesAttributes.MAX_MOVEMENT)
             {
@@ -174,7 +209,46 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             resting = false;
         }
 
-        if(isWalking)
+        if(attributes.movementRemaining == 0)
+        {
+            fastResting = true;
+            agent.Stop();
+            agent.enabled = false;
+            obstacle.enabled = true;
+        }
+
+        if(fastResting && attributes.movementRemaining > Mathf.Round(SpeciesAttributes.MAX_MOVEMENT / 3.0f))
+        {
+            fastResting = false;
+            anim.SetBool("walking", false);
+        }
+
+        if (character == 6)
+        {
+            Debug.Log("Character: " + character + " / " + agent.enabled);
+        }
+        if(agent.enabled && agent.velocity.x >= 0)
+        {
+            sprite.flipX = false;
+            if (character == 6)
+            {
+                Debug.Log("Character: " + character + " / entrou");
+                Debug.Log("Character: " + character + " / velocidade: " + agent.velocity);
+            }
+            attributes.movementRemaining--;
+        }
+        else if (agent.enabled && agent.velocity.x < 0)
+        {
+            sprite.flipX = true;
+            if (character == 6)
+            {
+                Debug.Log("Character: " + character + " / entrou");
+                Debug.Log("Character: " + character + " / velocidade: " + agent.velocity);
+            }
+            attributes.movementRemaining--;
+        }
+
+        if (isWalking)
         {
             if ((walkSide == -0.1f) && (gameObject.transform.position.x <= destination.x))
             {
@@ -205,7 +279,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 newPosition.x = newPosition.x + walkSide;
                 newPosition.z = newPosition.z + walkUp;
                 gameObject.transform.position = newPosition;
-                attributes.movementRemaining--;
+                //attributes.movementRemaining--;
             }
         }
     }

@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Breed : MonoBehaviour {
@@ -83,8 +86,6 @@ public class Breed : MonoBehaviour {
             {
                 newbornPerception = 2;
             }
-            Debug.Log("newbornPerception: " + newbornPerception);
-            Debug.Log("normalizedFoods: " + normalizedFoods);
 
             Vector3 childPosition = new Vector3();
             Vector3 childRotation;
@@ -99,7 +100,7 @@ public class Breed : MonoBehaviour {
             childScale.z = 1;
             GameObject childObject = new GameObject(PlayerInfo.playerCreaturesCount.ToString());
 
-            childObject.AddComponent<SpriteRenderer>();
+            SpriteRenderer spriteRenderer = childObject.AddComponent<SpriteRenderer>();
             //Sprite creatureSprite = Resources.Load<Sprite>("species_" + PlayerInfo.selectedSpecies.ToString() + "_default");
             //childSprite.sprite = creatureSprite;
 
@@ -136,8 +137,28 @@ public class Breed : MonoBehaviour {
             childRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             childObject.tag = "ControllableSpecies";
             Terrain terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
-            childPosition.y = terrain.SampleHeight(childPosition) + 7;
+            childPosition.y = terrain.SampleHeight(childPosition) + 10;
             childObject.transform.position = childPosition;
+
+            NavMeshObstacle obstacle = childObject.AddComponent<NavMeshObstacle>();
+            obstacle.center = new Vector3(0f, 0f, 0f);
+            obstacle.size = new Vector3(1f, 1f, 4.1f);
+            obstacle.carving = true;
+            obstacle.enabled = true;
+            NavMeshAgent agent = childObject.AddComponent<NavMeshAgent>();
+            agent.radius = 0.53f;
+            agent.height = 1;
+            agent.speed = 6.0f + newbornMovemet * 3.5f;
+            agent.angularSpeed = 120;
+            agent.acceleration = 8;
+            agent.stoppingDistance = 0;
+            agent.autoBraking = true;
+            agent.avoidancePriority = 50;
+            agent.autoTraverseOffMeshLink = true;
+            agent.autoRepath = true;
+            agent.areaMask = 1;
+            agent.enabled = false;
+            
 
             SpeciesAttributes childAttributes = childObject.AddComponent<SpeciesAttributes>();
             childAttributes.movementUpgrade = newbornMovemet;
@@ -146,7 +167,7 @@ public class Breed : MonoBehaviour {
             childObject.AddComponent<CharacterMovement>();
             childObject.AddComponent<FixRotation>();
             childObject.AddComponent<PlayerAutonomousBehavior>();
-
+            
             activeCreature.GetComponent<SpeciesAttributes>().libido -= 100;
             PlayerInfo.playerCreaturesCount++;
 
@@ -155,3 +176,5 @@ public class Breed : MonoBehaviour {
         }
     }
 }
+
+

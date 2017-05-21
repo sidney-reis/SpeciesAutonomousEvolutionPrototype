@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpeciesAttributes : MonoBehaviour {
     public static int MAX_MOVEMENT = 3000;
 
-    [HideInInspector]
     public int movementRemaining;
     public int movementUpgrade = 0;
     public int perceptionUpgrade = 0;
