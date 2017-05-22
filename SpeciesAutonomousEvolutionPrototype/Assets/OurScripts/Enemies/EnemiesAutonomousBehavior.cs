@@ -54,6 +54,11 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                 Wander();
             }
         }
+        else if (!attributes.dying && resting && !huntingFood)
+        {
+            anim.SetBool("walking", false);
+            isWalking = false;
+        }
     }
 
     void Wander()
@@ -84,42 +89,43 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
     void HuntForFood()
     {
-        if (attributes.hungry < 150 && !fastResting)
+        if (attributes.hungry < 150 && !fastResting && !attributes.dying)
         {
             huntingFood = true;
-            if (!attributes.dying && !isWalking && !resting)
+            List<GameObject> foodObjects = new List<GameObject>();
+            foodObjects.AddRange(GameObject.FindGameObjectsWithTag("Food"));
+            foodObjects.AddRange(GameObject.FindGameObjectsWithTag("RandomFood"));
+
+            closestObject = null;
+            int creatureHunting;
+            foreach (GameObject obj in foodObjects)
             {
-                List<GameObject> foodObjects = new List<GameObject>();
-                foodObjects.AddRange(GameObject.FindGameObjectsWithTag("Food"));
-                foodObjects.AddRange(GameObject.FindGameObjectsWithTag("RandomFood"));
-
-                closestObject = null;
-                int creatureHunting;
-                foreach (GameObject obj in foodObjects)
+                creatureHunting = (int)(obj.GetComponent<FoodMarks>().speciesHunting[species]);
+                if ((creatureHunting == -1 || creatureHunting == character) && (closestObject == null))
                 {
-                    creatureHunting = (int)(obj.GetComponent<FoodMarks>().speciesHunting[species]);
-                    if ((creatureHunting == -1 || creatureHunting == character) && (closestObject == null))
-                    {
-                        closestObject = obj;
-                    }
-                    else if ((creatureHunting == -1 || creatureHunting == character) && (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position)))
-                    {
-                        closestObject = obj;
-                    }
+                    closestObject = obj;
                 }
-                if (Vector3.Distance(transform.position, closestObject.transform.position) <= attributes.perceptionRay)
+                else if ((creatureHunting == -1 || creatureHunting == character) && (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position)))
                 {
-                    closestObject.GetComponent<FoodMarks>().speciesHunting[species] = character;
-                    destination = closestObject.transform.position;
-                    foundFood = true;
-
-                    obstacle.enabled = false;
-                    agent.enabled = true;
-                    agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
-
-                    anim.SetBool("walking", true);
-                    agent.SetDestination(closestObject.transform.position);
+                    closestObject = obj;
                 }
+            }
+            if (closestObject == null && !fastResting)
+            {
+                Wander();
+            }
+            else if (Vector3.Distance(transform.position, closestObject.transform.position) <= attributes.perceptionRay)
+            {
+                closestObject.GetComponent<FoodMarks>().speciesHunting[species] = character;
+                destination = closestObject.transform.position;
+                foundFood = true;
+
+                obstacle.enabled = false;
+                agent.enabled = true;
+                agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+
+                anim.SetBool("walking", true);
+                agent.SetDestination(closestObject.transform.position);
             }
         }
         else if (foundFood && closestObject == null)
@@ -199,9 +205,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
         if (isWalking && attributes.movementRemaining < SpeciesAttributes.MAX_MOVEMENT / 2)
         {
-            isWalking = false;
             resting = true;
-            anim.SetBool("walking", false);
         }
 
         if (resting && attributes.movementRemaining > Mathf.Round(SpeciesAttributes.MAX_MOVEMENT / 1.07f))
@@ -213,8 +217,11 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         {
             fastResting = true;
             anim.SetBool("walking", false);
-            agent.Stop();
-            agent.enabled = false;
+            if (agent.enabled == true)
+            {
+                agent.Stop();
+                agent.enabled = false;
+            }
             obstacle.enabled = true;
         }
 

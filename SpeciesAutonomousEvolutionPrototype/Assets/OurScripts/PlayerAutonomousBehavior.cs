@@ -50,6 +50,11 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 Wander();
             }
         }
+        else if(!attributes.dying && character != PlayerInfo.selectedCreature && resting && !huntingFood)
+        {
+            anim.SetBool("walking", false);
+            isWalking = false;
+        }
     }
 
     void Wander()
@@ -80,43 +85,44 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     
     void HuntForFood ()
     {
-        if (attributes.hungry < 150 && !fastResting && character != PlayerInfo.selectedCreature)
+        if (attributes.hungry < 150 && !fastResting && character != PlayerInfo.selectedCreature && !attributes.dying)
         {
             huntingFood = true;
-            if (!attributes.dying && !isWalking && character != PlayerInfo.selectedCreature && !resting)
+            List<GameObject> foodObjects = new List<GameObject>();
+            foodObjects.AddRange(GameObject.FindGameObjectsWithTag("Food"));
+            foodObjects.AddRange(GameObject.FindGameObjectsWithTag("RandomFood"));
+
+            closestObject = null;
+            int creatureHunting;
+            foreach (GameObject obj in foodObjects)
             {
-                List<GameObject> foodObjects = new List<GameObject>();
-                foodObjects.AddRange(GameObject.FindGameObjectsWithTag("Food"));
-                foodObjects.AddRange(GameObject.FindGameObjectsWithTag("RandomFood"));
-
-                closestObject = null;
-                int creatureHunting;
-                foreach (GameObject obj in foodObjects)
+                creatureHunting = (int)(obj.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies]);
+                if ((creatureHunting == -1 || creatureHunting == character) && (closestObject == null))
                 {
-                    creatureHunting = (int)(obj.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies]);
-                    if ((creatureHunting == -1 || creatureHunting == character) && (closestObject == null))
-                    {
-                        closestObject = obj;
-                    }
-                    else if ((creatureHunting == -1 || creatureHunting == character) && (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position)))
-                    {
-                        closestObject = obj;
-                    }
+                    closestObject = obj;
                 }
-                if (Vector3.Distance(transform.position, closestObject.transform.position) <= attributes.perceptionRay)
+                else if ((creatureHunting == -1 || creatureHunting == character) && (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position)))
                 {
-                    closestObject.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies] = character;
-                    destination = closestObject.transform.position;
-                    foundFood = true;
-
-                    obstacle.enabled = false;
-                    agent.enabled = true;
-                    agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
-
-                    anim.SetBool("walking", true);
-                    
-                    agent.SetDestination(closestObject.transform.position);
+                    closestObject = obj;
                 }
+            }
+
+            if (closestObject == null && !fastResting)
+            {
+                Wander();
+            }
+            else if (Vector3.Distance(transform.position, closestObject.transform.position) <= attributes.perceptionRay)
+            {
+                closestObject.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies] = character;
+                destination = closestObject.transform.position;
+                foundFood = true;
+
+                obstacle.enabled = false;
+                agent.enabled = true;
+                agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+
+                anim.SetBool("walking", true);
+                agent.SetDestination(closestObject.transform.position);
             }
         }
         else if(foundFood && closestObject == null)
@@ -196,9 +202,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
         if(isWalking && attributes.movementRemaining < SpeciesAttributes.MAX_MOVEMENT/2)
         {
-            isWalking = false;
             resting = true;
-            anim.SetBool("walking", false);
         }
 
         if(resting && attributes.movementRemaining > Mathf.Round(SpeciesAttributes.MAX_MOVEMENT/1.07f))
@@ -210,15 +214,17 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         {
             fastResting = true;
             anim.SetBool("walking", false);
-            agent.Stop();
-            agent.enabled = false;
+            if(agent.enabled == true)
+            {
+                agent.Stop();
+                agent.enabled = false;
+            }
             obstacle.enabled = true;
         }
 
         if(fastResting && attributes.movementRemaining > Mathf.Round(SpeciesAttributes.MAX_MOVEMENT / 3.0f))
         {
             fastResting = false;
-
         }
 
         if(agent.enabled && agent.velocity.x >= 0)
