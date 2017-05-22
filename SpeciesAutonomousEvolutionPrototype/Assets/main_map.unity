@@ -494,7 +494,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_RootOrder
-      value: 43
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_LocalScale.x
@@ -612,7 +612,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_RootOrder
-      value: 44
+      value: 43
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_LocalScale.x
@@ -844,6 +844,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631848dc32d49c4ca638b74ea2d7f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
 --- !u!208 &105838277
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1285,6 +1299,7 @@ GameObject:
   - component: {fileID: 179407208}
   - component: {fileID: 179407210}
   - component: {fileID: 179407209}
+  - component: {fileID: 179407211}
   m_Layer: 0
   m_Name: fruit5
   m_TagString: Food
@@ -1352,6 +1367,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &179407211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 179407207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b16cb73774964892b53106a006258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &199195109 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 136824, guid: 393b236c42954a640b513d46de90ac38, type: 2}
@@ -1697,6 +1723,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13687634, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389710, guid: c63ea781a273235439e583799176c846, type: 2}
+      propertyPath: m_SelectedEditorRenderState
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -2294,6 +2324,7 @@ GameObject:
   - component: {fileID: 432428652}
   - component: {fileID: 432428654}
   - component: {fileID: 432428653}
+  - component: {fileID: 432428655}
   m_Layer: 0
   m_Name: fruit7
   m_TagString: Food
@@ -2361,6 +2392,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &432428655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 432428651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b16cb73774964892b53106a006258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &462550349
 Prefab:
   m_ObjectHideFlags: 0
@@ -2804,6 +2846,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631848dc32d49c4ca638b74ea2d7f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
 --- !u!208 &474619724
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -2849,6 +2905,7 @@ GameObject:
   - component: {fileID: 484305125}
   - component: {fileID: 484305127}
   - component: {fileID: 484305126}
+  - component: {fileID: 484305128}
   m_Layer: 0
   m_Name: fruit4
   m_TagString: Food
@@ -2916,6 +2973,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &484305128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 484305124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b16cb73774964892b53106a006258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &489315591 stripped
 Transform:
   m_PrefabParentObject: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
@@ -3052,7 +3120,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_RootOrder
-      value: 42
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_LocalScale.x
@@ -3557,7 +3625,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_RootOrder
-      value: 49
+      value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_LocalScale.x
@@ -3766,7 +3834,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_RootOrder
-      value: 45
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_LocalScale.x
@@ -3834,6 +3902,7 @@ GameObject:
   - component: {fileID: 638276707}
   - component: {fileID: 638276706}
   - component: {fileID: 638276716}
+  - component: {fileID: 638276710}
   m_Layer: 9
   m_Name: 4
   m_TagString: ControllableSpecies
@@ -3877,6 +3946,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &638276708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3907,6 +3991,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &638276710
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638276704}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &638276711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4069,6 +4173,7 @@ GameObject:
   - component: {fileID: 673883746}
   - component: {fileID: 673883745}
   - component: {fileID: 673883744}
+  - component: {fileID: 673883749}
   m_Layer: 9
   m_Name: 0
   m_TagString: ControllableSpecies
@@ -4127,6 +4232,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &673883747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4157,6 +4277,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &673883749
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 673883742}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &673883750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4318,7 +4458,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_RootOrder
-      value: 40
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_LocalScale.x
@@ -4390,6 +4530,7 @@ GameObject:
   - component: {fileID: 711562902}
   - component: {fileID: 711562901}
   - component: {fileID: 711562911}
+  - component: {fileID: 711562905}
   m_Layer: 9
   m_Name: 2
   m_TagString: ControllableSpecies
@@ -4433,6 +4574,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &711562903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4463,6 +4619,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &711562905
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 711562899}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &711562906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4609,7 +4785,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_RootOrder
-      value: 47
+      value: 46
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_LocalScale.x
@@ -4677,6 +4853,7 @@ GameObject:
   - component: {fileID: 756922920}
   - component: {fileID: 756922919}
   - component: {fileID: 756922918}
+  - component: {fileID: 756922923}
   m_Layer: 9
   m_Name: 1
   m_TagString: ControllableSpecies
@@ -4735,6 +4912,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &756922921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4765,6 +4957,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &756922923
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 756922916}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &756922924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5014,7 +5226,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_RootOrder
-      value: 36
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_LocalScale.x
@@ -5380,7 +5592,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_RootOrder
-      value: 48
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_LocalScale.x
@@ -5606,6 +5818,7 @@ GameObject:
   - component: {fileID: 931364891}
   - component: {fileID: 931364893}
   - component: {fileID: 931364892}
+  - component: {fileID: 931364894}
   m_Layer: 0
   m_Name: fruit3
   m_TagString: Food
@@ -5673,6 +5886,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &931364894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 931364890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b16cb73774964892b53106a006258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &932664169
 GameObject:
   m_ObjectHideFlags: 0
@@ -5757,6 +5981,7 @@ GameObject:
   - component: {fileID: 937131883}
   - component: {fileID: 937131885}
   - component: {fileID: 937131884}
+  - component: {fileID: 937131886}
   m_Layer: 0
   m_Name: fruit0
   m_TagString: Food
@@ -5824,6 +6049,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &937131886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937131882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b16cb73774964892b53106a006258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &948350798 stripped
 Transform:
   m_PrefabParentObject: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
@@ -5865,7 +6101,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_RootOrder
-      value: 46
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_LocalScale.x
@@ -6008,6 +6244,7 @@ GameObject:
   - component: {fileID: 995333419}
   - component: {fileID: 995333421}
   - component: {fileID: 995333420}
+  - component: {fileID: 995333422}
   m_Layer: 0
   m_Name: fruit1
   m_TagString: Food
@@ -6075,6 +6312,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &995333422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 995333418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b16cb73774964892b53106a006258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &995853958
 GameObject:
   m_ObjectHideFlags: 0
@@ -6205,6 +6453,7 @@ GameObject:
   - component: {fileID: 1026546010}
   - component: {fileID: 1026546012}
   - component: {fileID: 1026546011}
+  - component: {fileID: 1026546013}
   m_Layer: 0
   m_Name: fruit2
   m_TagString: Food
@@ -6272,6 +6521,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1026546013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1026546009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b16cb73774964892b53106a006258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1051670706
 GameObject:
   m_ObjectHideFlags: 0
@@ -6533,6 +6793,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631848dc32d49c4ca638b74ea2d7f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
 --- !u!195 &1120682871
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6652,6 +6926,7 @@ GameObject:
   - component: {fileID: 1178477038}
   - component: {fileID: 1178477037}
   - component: {fileID: 1178477047}
+  - component: {fileID: 1178477041}
   m_Layer: 9
   m_Name: 1
   m_TagString: ControllableSpecies
@@ -6695,6 +6970,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1178477039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6725,6 +7015,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &1178477041
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1178477035}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1178477042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6935,6 +7245,7 @@ GameObject:
   - component: {fileID: 1193338443}
   - component: {fileID: 1193338442}
   - component: {fileID: 1193338452}
+  - component: {fileID: 1193338446}
   m_Layer: 9
   m_Name: 5
   m_TagString: ControllableSpecies
@@ -6978,6 +7289,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1193338444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7008,6 +7334,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &1193338446
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1193338440}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1193338447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7735,7 +8081,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_RootOrder
-      value: 41
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_LocalScale.x
@@ -8053,7 +8399,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_RootOrder
-      value: 38
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
       propertyPath: m_LocalScale.x
@@ -8175,7 +8521,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_RootOrder
-      value: 39
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_LocalScale.x
@@ -8235,6 +8581,7 @@ GameObject:
   - component: {fileID: 1340651995}
   - component: {fileID: 1340651997}
   - component: {fileID: 1340651996}
+  - component: {fileID: 1340651998}
   m_Layer: 0
   m_Name: fruit6
   m_TagString: Food
@@ -8302,6 +8649,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1340651998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1340651994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543b16cb73774964892b53106a006258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1367507144
 GameObject:
   m_ObjectHideFlags: 0
@@ -8525,7 +8883,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_RootOrder
-      value: 34
+      value: 33
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_LocalScale.x
@@ -8632,6 +8990,7 @@ GameObject:
   - component: {fileID: 1381601540}
   - component: {fileID: 1381601539}
   - component: {fileID: 1381601549}
+  - component: {fileID: 1381601543}
   m_Layer: 9
   m_Name: 0
   m_TagString: ControllableSpecies
@@ -8675,6 +9034,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1381601541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8705,6 +9079,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &1381601543
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1381601537}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1381601544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9300,6 +9694,7 @@ GameObject:
   - component: {fileID: 1502538291}
   - component: {fileID: 1502538290}
   - component: {fileID: 1502538296}
+  - component: {fileID: 1502538293}
   m_Layer: 9
   m_Name: 0
   m_TagString: ControllableSpecies
@@ -9343,6 +9738,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1502538292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9354,6 +9764,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e60a29c6dc72ab4e80768560e1191a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &1502538293
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1502538288}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1502538294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9681,7 +10111,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_RootOrder
-      value: 35
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_LocalScale.x
@@ -10335,6 +10765,7 @@ GameObject:
   - component: {fileID: 1666012948}
   - component: {fileID: 1666012947}
   - component: {fileID: 1666012957}
+  - component: {fileID: 1666012951}
   m_Layer: 9
   m_Name: 5
   m_TagString: ControllableSpecies
@@ -10378,6 +10809,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1666012949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10408,6 +10854,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &1666012951
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1666012945}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1666012952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10562,6 +11028,7 @@ GameObject:
   - component: {fileID: 1677255194}
   - component: {fileID: 1677255193}
   - component: {fileID: 1677255203}
+  - component: {fileID: 1677255197}
   m_Layer: 9
   m_Name: 4
   m_TagString: ControllableSpecies
@@ -10605,6 +11072,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1677255195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10635,6 +11117,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &1677255197
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1677255191}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1677255198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11256,6 +11758,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631848dc32d49c4ca638b74ea2d7f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
 --- !u!208 &1767975196
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -11651,6 +12167,7 @@ GameObject:
   - component: {fileID: 1836491083}
   - component: {fileID: 1836491082}
   - component: {fileID: 1836491092}
+  - component: {fileID: 1836491086}
   m_Layer: 9
   m_Name: 3
   m_TagString: ControllableSpecies
@@ -11694,6 +12211,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1836491084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11724,6 +12256,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &1836491086
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1836491080}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1836491087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11940,7 +12492,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_RootOrder
-      value: 37
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 418198, guid: 393b236c42954a640b513d46de90ac38, type: 2}
       propertyPath: m_LocalScale.x
@@ -12187,6 +12739,7 @@ GameObject:
   - component: {fileID: 1939026615}
   - component: {fileID: 1939026614}
   - component: {fileID: 1939026624}
+  - component: {fileID: 1939026618}
   m_Layer: 9
   m_Name: 4
   m_TagString: ControllableSpecies
@@ -12230,6 +12783,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1939026616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12260,6 +12828,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &1939026618
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1939026612}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1939026619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12383,6 +12971,7 @@ GameObject:
   - component: {fileID: 1941566593}
   - component: {fileID: 1941566592}
   - component: {fileID: 1941566602}
+  - component: {fileID: 1941566596}
   m_Layer: 9
   m_Name: 2
   m_TagString: ControllableSpecies
@@ -12426,6 +13015,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1941566594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12456,6 +13060,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &1941566596
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941566590}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1941566597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12743,6 +13367,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631848dc32d49c4ca638b74ea2d7f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
 --- !u!208 &1958068351
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -12796,6 +13434,7 @@ GameObject:
   - component: {fileID: 1986587045}
   - component: {fileID: 1986587044}
   - component: {fileID: 1986587054}
+  - component: {fileID: 1986587048}
   m_Layer: 9
   m_Name: 3
   m_TagString: ControllableSpecies
@@ -12839,6 +13478,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &1986587046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12869,6 +13523,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &1986587048
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1986587042}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1986587049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13324,6 +13998,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3631848dc32d49c4ca638b74ea2d7f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
 --- !u!208 &2010389132
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -13412,6 +14100,7 @@ GameObject:
   - component: {fileID: 2020064391}
   - component: {fileID: 2020064390}
   - component: {fileID: 2020064400}
+  - component: {fileID: 2020064394}
   m_Layer: 9
   m_Name: 2
   m_TagString: ControllableSpecies
@@ -13455,6 +14144,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &2020064392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13485,6 +14189,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &2020064394
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2020064388}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &2020064395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13935,6 +14659,7 @@ GameObject:
   - component: {fileID: 2059780298}
   - component: {fileID: 2059780297}
   - component: {fileID: 2059780307}
+  - component: {fileID: 2059780301}
   m_Layer: 9
   m_Name: 1
   m_TagString: ControllableSpecies
@@ -13978,6 +14703,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &2059780299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14008,6 +14748,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &2059780301
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2059780295}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &2059780302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14131,6 +14891,7 @@ GameObject:
   - component: {fileID: 2079516991}
   - component: {fileID: 2079516990}
   - component: {fileID: 2079517000}
+  - component: {fileID: 2079516994}
   m_Layer: 9
   m_Name: 5
   m_TagString: ControllableSpecies
@@ -14174,6 +14935,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &2079516992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14204,6 +14980,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &2079516994
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2079516988}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &2079516995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14327,6 +15123,7 @@ GameObject:
   - component: {fileID: 2085964223}
   - component: {fileID: 2085964222}
   - component: {fileID: 2085964232}
+  - component: {fileID: 2085964226}
   m_Layer: 9
   m_Name: 3
   m_TagString: ControllableSpecies
@@ -14370,6 +15167,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471b3675fc02b344a89aa746f3b69f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attributes: {fileID: 0}
+  character: 0
+  isWalking: 0
+  resting: 0
+  fastResting: 1
+  huntingFood: 0
+  foundFood: 0
+  destination: {x: 0, y: 0, z: 0}
+  walkSide: 0
+  walkUp: 0
+  agent: {fileID: 0}
+  obstacle: {fileID: 0}
+  sprite: {fileID: 0}
+  closestObject: {fileID: 0}
+  species: 0
 --- !u!114 &2085964224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14400,6 +15212,26 @@ MonoBehaviour:
   life: 100
   dying: 0
   libido: 0
+--- !u!195 &2085964226
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2085964220}
+  m_Enabled: 0
+  m_Radius: 0.53
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.6
+  m_WalkableMask: 1
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &2085964227
 MonoBehaviour:
   m_ObjectHideFlags: 0

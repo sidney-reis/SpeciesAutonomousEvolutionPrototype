@@ -5,19 +5,20 @@ using UnityEngine.AI;
 
 public class PlayerAutonomousBehavior : MonoBehaviour {
     private Animator anim;
-    SpeciesAttributes attributes;
-    int character;
-    bool isWalking = false;
-    bool resting = false;
-    bool fastResting = true;
-    bool huntingFood = false;
-    bool foundFood = false;
-    Vector3 destination;
-    float walkSide = 0;
-    float walkUp = 0;
-    NavMeshAgent agent;
-    NavMeshObstacle obstacle;
-    SpriteRenderer sprite;
+    public SpeciesAttributes attributes;
+    public int character;
+    public bool isWalking = false;
+    public bool resting = false;
+    public bool fastResting = true;
+    public bool huntingFood = false;
+    public bool foundFood = false;
+    public Vector3 destination;
+    public float walkSide = 0;
+    public float walkUp = 0;
+    public NavMeshAgent agent;
+    public NavMeshObstacle obstacle;
+    public SpriteRenderer sprite;
+    public GameObject closestObject;
 
     void Start () {
         anim = GetComponent<Animator>();
@@ -29,7 +30,6 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         agent = gameObject.GetComponent<NavMeshAgent>();
         obstacle = gameObject.GetComponent<NavMeshObstacle>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
-        Debug.Log("sprite size: " + sprite.bounds.size);
 
         StartCoroutine(SetAgentOffset(1));
     }
@@ -80,8 +80,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     
     void HuntForFood ()
     {
-        GameObject closestObject = null;
-        if (attributes.hungry < 280 && !foundFood && !fastResting && character != PlayerInfo.selectedCreature)
+        if (attributes.hungry < 150 && !fastResting && character != PlayerInfo.selectedCreature)
         {
             huntingFood = true;
             if (!attributes.dying && !isWalking && character != PlayerInfo.selectedCreature && !resting)
@@ -90,42 +89,36 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 foodObjects.AddRange(GameObject.FindGameObjectsWithTag("Food"));
                 foodObjects.AddRange(GameObject.FindGameObjectsWithTag("RandomFood"));
 
-                closestObject = foodObjects[0];
+                closestObject = null;
+                int creatureHunting;
                 foreach (GameObject obj in foodObjects)
                 {
-                    if (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position))
+                    creatureHunting = (int)(obj.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies]);
+                    if ((creatureHunting == -1 || creatureHunting == character) && (closestObject == null))
+                    {
+                        closestObject = obj;
+                    }
+                    else if ((creatureHunting == -1 || creatureHunting == character) && (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position)))
                     {
                         closestObject = obj;
                     }
                 }
                 if (Vector3.Distance(transform.position, closestObject.transform.position) <= attributes.perceptionRay)
                 {
+                    closestObject.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies] = character;
                     destination = closestObject.transform.position;
                     foundFood = true;
 
+                    obstacle.enabled = false;
                     agent.enabled = true;
                     agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
-                    obstacle.enabled = false;
 
                     anim.SetBool("walking", true);
-
-                    if (character == 6)
-                    {
-                        Debug.Log("comida proxima: "+closestObject.transform.name+" posicao: "+closestObject.transform.position);
-                    }
+                    
                     agent.SetDestination(closestObject.transform.position);
                 }
             }
         }
-        //else if(foundFood && attributes.hungry >= 280)
-        //{
-        //    foundFood = false;
-        //    huntingFood = false;
-        //    anim.SetBool("walking", false);
-        //    agent.enabled = false;
-        //    obstacle.enabled = true;
-        //    Wander();
-        //}
         else if(foundFood && closestObject == null)
         {
             foundFood = false;
@@ -135,8 +128,12 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             foundFood = false;
         }
 
-        if((attributes.hungry >= 280) && (huntingFood == true))
+        if((attributes.hungry >= 150) && (huntingFood == true))
         {
+            if (closestObject != null)
+            {
+                closestObject.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies] = -1;
+            }
             foundFood = false;
             huntingFood = false;
             anim.SetBool("walking", false);
@@ -212,6 +209,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         if(attributes.movementRemaining == 0)
         {
             fastResting = true;
+            anim.SetBool("walking", false);
             agent.Stop();
             agent.enabled = false;
             obstacle.enabled = true;
@@ -220,31 +218,17 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         if(fastResting && attributes.movementRemaining > Mathf.Round(SpeciesAttributes.MAX_MOVEMENT / 3.0f))
         {
             fastResting = false;
-            anim.SetBool("walking", false);
+
         }
 
-        if (character == 6)
-        {
-            Debug.Log("Character: " + character + " / " + agent.enabled);
-        }
         if(agent.enabled && agent.velocity.x >= 0)
         {
             sprite.flipX = false;
-            if (character == 6)
-            {
-                Debug.Log("Character: " + character + " / entrou");
-                Debug.Log("Character: " + character + " / velocidade: " + agent.velocity);
-            }
             attributes.movementRemaining--;
         }
         else if (agent.enabled && agent.velocity.x < 0)
         {
             sprite.flipX = true;
-            if (character == 6)
-            {
-                Debug.Log("Character: " + character + " / entrou");
-                Debug.Log("Character: " + character + " / velocidade: " + agent.velocity);
-            }
             attributes.movementRemaining--;
         }
 
@@ -279,7 +263,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 newPosition.x = newPosition.x + walkSide;
                 newPosition.z = newPosition.z + walkUp;
                 gameObject.transform.position = newPosition;
-                //attributes.movementRemaining--;
+                attributes.movementRemaining--;
             }
         }
     }

@@ -54,6 +54,7 @@ public class RandomFoodGenerator : MonoBehaviour {
             Sprite fruitSprite = Resources.Load<Sprite>("fruta"+randomFruitNumber);
             foodSprite.sprite = fruitSprite;
             foodObject.tag = "RandomFood";
+            foodObject.AddComponent<FoodMarks>();
 
             foodPosition.y = terrain.SampleHeight(foodPosition) + foodBoxSize.y + 1;
             foodObject.transform.position = foodPosition;
