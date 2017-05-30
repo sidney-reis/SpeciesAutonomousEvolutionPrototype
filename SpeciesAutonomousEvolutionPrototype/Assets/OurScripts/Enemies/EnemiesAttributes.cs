@@ -8,7 +8,7 @@ public class EnemiesAttributes : MonoBehaviour
     public int movementRemaining;
     public int movementUpgrade = 0;
     public int perceptionUpgrade = 0;
-    public int perceptionRay = 9999900;
+    public int perceptionRay = 180;
     public int hungry = 300;
     public int life = 100;
     public bool dying = false;

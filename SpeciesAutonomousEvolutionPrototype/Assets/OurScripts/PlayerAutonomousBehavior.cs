@@ -111,7 +111,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             {
                 Wander();
             }
-            else if (Vector3.Distance(transform.position, closestObject.transform.position) <= attributes.perceptionRay)
+            else if (Vector3.Distance(transform.position, closestObject.transform.position) <= (attributes.perceptionRay + attributes.perceptionRay * attributes.perceptionUpgrade))
             {
                 closestObject.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies] = character;
                 destination = closestObject.transform.position;
@@ -123,6 +123,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
                 anim.SetBool("walking", true);
                 agent.SetDestination(closestObject.transform.position);
+            }
+            else
+            {
+                Wander();
             }
         }
         else if(foundFood && closestObject == null)

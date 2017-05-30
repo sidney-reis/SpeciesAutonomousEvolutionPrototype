@@ -114,7 +114,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             {
                 Wander();
             }
-            else if (Vector3.Distance(transform.position, closestObject.transform.position) <= attributes.perceptionRay)
+            else if (Vector3.Distance(transform.position, closestObject.transform.position) <= (attributes.perceptionRay + attributes.perceptionRay * attributes.perceptionUpgrade))
             {
                 closestObject.GetComponent<FoodMarks>().speciesHunting[species] = character;
                 destination = closestObject.transform.position;
@@ -126,6 +126,10 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
                 anim.SetBool("walking", true);
                 agent.SetDestination(closestObject.transform.position);
+            }
+            else
+            {
+                Wander();
             }
         }
         else if (foundFood && closestObject == null)
@@ -145,9 +149,15 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             }
             foundFood = false;
             huntingFood = false;
-            anim.SetBool("walking", false);
-            agent.Stop();
-            agent.enabled = false;
+            if (anim)
+            {
+                anim.SetBool("walking", false);
+            }
+            if(agent.enabled == true)
+            {
+                agent.Stop();
+                agent.enabled = false;
+            }
             obstacle.enabled = true;
             Wander();
         }
