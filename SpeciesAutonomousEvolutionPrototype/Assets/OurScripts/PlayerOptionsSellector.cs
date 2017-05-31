@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,7 @@ public class PlayerOptionsSellector : MonoBehaviour {
                     PlayerInfo.selectedMenuCreature = int.Parse(hitInfo.transform.gameObject.name);
                     if ((PlayerInfo.selectedCreature >= 0) && (PlayerInfo.selectedCreature != PlayerInfo.selectedMenuCreature))
                     {
+                        menuCanvas.GetComponent<MenuHandler>().CloseCurrentMenu();
                         menuCanvas.GetComponent<MenuHandler>().OpenReproduceMenu();
                     }
                     else
@@ -34,6 +36,18 @@ public class PlayerOptionsSellector : MonoBehaviour {
                 {
                     PlayerInfo.selectedOption = 1;
                     PlayerInfo.selectedMenuEnemy = int.Parse(hitInfo.transform.gameObject.name);
+                    string parentName = hitInfo.transform.parent.gameObject.transform.name;
+                    PlayerInfo.selectedMenuEnemySpecies = Int32.Parse(parentName.Substring(parentName.Length - 1, 1));
+
+                    if (PlayerInfo.selectedCreature >= 0)
+                    {
+                        menuCanvas.GetComponent<MenuHandler>().CloseCurrentMenu();
+                        menuCanvas.GetComponent<MenuHandler>().OpenCombatMenu();
+                    }
+                    else
+                    {
+                        menuCanvas.GetComponent<MenuHandler>().CloseCurrentMenu();
+                    }
                 }
             }
         }

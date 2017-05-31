@@ -10,6 +10,7 @@ TagManager:
   - RandomFood
   - Terrain
   - InvisibleWall
+  - EnemySpecies
   layers:
   - Default
   - TransparentFX

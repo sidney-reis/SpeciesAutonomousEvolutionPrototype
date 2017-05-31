@@ -8,4 +8,5 @@
     public static int selectedCreature = -1;
     public static int selectedMenuCreature = -1;
     public static int selectedMenuEnemy = -1;
+    public static int selectedMenuEnemySpecies = -1;
 }

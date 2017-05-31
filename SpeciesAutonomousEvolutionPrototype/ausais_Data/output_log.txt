@@ -1,0 +1,63 @@
+Mono path[0] = 'C:/Users/Sidney/Documents/UnityProjects/SpeciesAutonomousEvolutionPrototype/SpeciesAutonomousEvolutionPrototype/ausais_Data/Managed'
+Mono path[1] = 'C:/Users/Sidney/Documents/UnityProjects/SpeciesAutonomousEvolutionPrototype/SpeciesAutonomousEvolutionPrototype/ausais_Data/Mono'
+Mono config path = 'C:/Users/Sidney/Documents/UnityProjects/SpeciesAutonomousEvolutionPrototype/SpeciesAutonomousEvolutionPrototype/ausais_Data/Mono/etc'
+PlayerConnection initialized from C:/Users/Sidney/Documents/UnityProjects/SpeciesAutonomousEvolutionPrototype/SpeciesAutonomousEvolutionPrototype/ausais_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55120
+Multi-casting "[IP] 192.168.0.8 [Port] 55120 [Flags] 2 [Guid] 1567243220 [EditorId] 1599039021 [Version] 1048832 [Id] WindowsPlayer(NoteSid) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55120]
+PlayerConnection already initialized - listening to [0.0.0.0:55120]
+Initialize engine version: 5.5.2f1 (3829d7f588f3)
+GfxDevice: creating device client; threaded=1
+d3d11: failed to create D3D11 device (0x8007000e)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvumdshimx.dll 10.18.13.5362]
+    Renderer: NVIDIA GeForce GT 720M    
+    Vendor:   NVIDIA
+    VRAM:     973 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 INTZ=1 NULL=1 RESZ=0 SlowINTZ=0 ATOC=1 BC4=1 BC5=1
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.312 seconds
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\ausais_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.391371 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 2b10 -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+WARNING: BC6H/BC7 texture format is not supported, decompressing texture
+UnloadTime: 10.422139 ms
+System memory in use before: 47.0 MB.
+System memory in use after: 46.8 MB.
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 1129.
+Total: 1.277188 ms (FindLiveObjects: 0.132786 ms CreateObjectMapping: 0.055167 ms MarkObjects: 0.432358 ms  DeleteObjects: 0.655593 ms)
+
+Selecting Character
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+SpeciesSellector:Update() (at C:\Users\Sidney\Documents\UnityProjects\SpeciesAutonomousEvolutionPrototype\SpeciesAutonomousEvolutionPrototype\Assets\OurScripts\SpeciesSellector.cs:17)
+ 
+(Filename: C:/Users/Sidney/Documents/UnityProjects/SpeciesAutonomousEvolutionPrototype/SpeciesAutonomousEvolutionPrototype/Assets/OurScripts/SpeciesSellector.cs Line: 17)
+
