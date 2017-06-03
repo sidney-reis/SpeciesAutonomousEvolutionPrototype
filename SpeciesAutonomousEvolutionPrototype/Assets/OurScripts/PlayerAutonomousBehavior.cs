@@ -52,7 +52,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         }
         else if(!attributes.dying && character != PlayerInfo.selectedCreature && resting && !huntingFood)
         {
-            anim.SetBool("walking", false);
+            if (anim)
+            {
+                anim.SetBool("walking", false);
+            }
             isWalking = false;
         }
     }
@@ -121,7 +124,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 agent.enabled = true;
                 agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
 
-                anim.SetBool("walking", true);
+                if (anim)
+                {
+                    anim.SetBool("walking", true);
+                }
                 agent.SetDestination(closestObject.transform.position);
             }
             else
@@ -146,9 +152,15 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             }
             foundFood = false;
             huntingFood = false;
-            anim.SetBool("walking", false);
-            agent.Stop();
-            agent.enabled = false;
+            if (anim)
+            {
+                anim.SetBool("walking", false);
+            }
+            if(agent.enabled == true)
+            {
+                agent.Stop();
+                agent.enabled = false;
+            }
             obstacle.enabled = true;
             Wander();
         }
@@ -179,7 +191,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         }
 
         isWalking = true;
-        anim.SetBool("walking", true);
+        if(anim)
+        {
+            anim.SetBool("walking", true);
+        }
     }
 
     void Update ()
@@ -217,7 +232,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         if(attributes.movementRemaining == 0)
         {
             fastResting = true;
-            anim.SetBool("walking", false);
+            if (anim)
+            {
+                anim.SetBool("walking", false);
+            }
             if(agent.enabled == true)
             {
                 agent.Stop();
@@ -265,13 +283,16 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             if ((walkUp == 0.0f) && (walkSide == 0.0f))
             {
                 isWalking = false;
-                anim.SetBool("walking", false);
+                if (anim)
+                {
+                    anim.SetBool("walking", false);
+                }
             }
             else
             {
                 Vector3 newPosition = gameObject.transform.position;
-                newPosition.x = newPosition.x + walkSide;
-                newPosition.z = newPosition.z + walkUp;
+                newPosition.x = newPosition.x + walkSide * GameConstants.movementSpeed + (walkSide * GameConstants.movementSpeed / 2 * attributes.movementUpgrade);
+                newPosition.z = newPosition.z + walkUp * GameConstants.movementSpeed + (walkUp * GameConstants.movementSpeed / 2 * attributes.movementUpgrade);
                 gameObject.transform.position = newPosition;
                 attributes.movementRemaining--;
             }
@@ -283,7 +304,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         if(target.gameObject.tag != "Terrain")
         {
             isWalking = false;
-            if(!huntingFood && !foundFood)
+            if(!huntingFood && !foundFood && anim)
             {
                 anim.SetBool("walking", false);
             }

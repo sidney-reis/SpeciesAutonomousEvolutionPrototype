@@ -17,7 +17,7 @@ public class Breed : MonoBehaviour {
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").SetActive(true);
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").GetComponent<Text>().text = "Not enough libido!";
         }
-        else if(Vector3.Distance(activeCreature.transform.position, passiveCreature.transform.position) > 100.0)
+        else if(Vector3.Distance(activeCreature.transform.position, passiveCreature.transform.position) > 12.0)
         {
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").SetActive(true);
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").GetComponent<Text>().text = "Creature is too far!";
@@ -148,7 +148,7 @@ public class Breed : MonoBehaviour {
             NavMeshAgent agent = childObject.AddComponent<NavMeshAgent>();
             agent.radius = 0.53f;
             agent.height = 1;
-            agent.speed = 6.0f + newbornMovemet * 3.5f;
+            agent.speed = (6.0f + newbornMovemet * 3.5f) * GameConstants.movementSpeed;
             agent.angularSpeed = 120;
             agent.acceleration = 8;
             agent.stoppingDistance = 0;

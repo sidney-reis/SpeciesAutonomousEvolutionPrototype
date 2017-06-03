@@ -2,11 +2,8 @@
 using System.Collections;
 
 public class SpeciesSellector : MonoBehaviour {
-    void Start () {
-	}
-	
 	void Update () {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             RaycastHit hitInfo = new RaycastHit();
             bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
@@ -34,7 +31,6 @@ public class SpeciesSellector : MonoBehaviour {
                 }
             }
             PlayerInfo.selectedCreature = currentCreature;
-
         }
     }
 }

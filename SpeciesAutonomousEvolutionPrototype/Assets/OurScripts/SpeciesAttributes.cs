@@ -9,6 +9,8 @@ public class SpeciesAttributes : MonoBehaviour {
     public int movementUpgrade = 0;
     public int perceptionUpgrade = 0;
     public int perceptionRay = 180;
+    public int attackUpgrade = 0;
+    public int deffenseUpgrade = 0;
     public int hungry = 300;
     public int life = 100;
     public bool dying = false;
