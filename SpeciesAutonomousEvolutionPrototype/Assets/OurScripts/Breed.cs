@@ -150,7 +150,7 @@ public class Breed : MonoBehaviour {
             agent.height = 1;
             agent.speed = (6.0f + newbornMovemet * 3.5f) * GameConstants.movementSpeed;
             agent.angularSpeed = 120;
-            agent.acceleration = 8;
+            agent.acceleration = 99;
             agent.stoppingDistance = 0;
             agent.autoBraking = true;
             agent.avoidancePriority = 50;

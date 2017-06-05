@@ -24,8 +24,6 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     public bool fastResting = true;
     public bool huntingFood = false;
     public bool foundFood = false;
-    public bool chasingEnemy = false;
-    public bool goingToEnemy = false;
     public bool lockAttack = false;
     public int cancelTimeout = 0;
     public int attackTimes = 0;
@@ -62,7 +60,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
     void WanderOrStay ()
     {
-        if (!attributes.dying && !isWalking && character != PlayerInfo.selectedCreature && !resting && !huntingFood && !chasingEnemy)
+        if (!attributes.dying && !isWalking && character != PlayerInfo.selectedCreature && !resting && !huntingFood && attackTimes == 0)
         {
             float randomValue = Random.value;
             if (randomValue < 0.7)
@@ -70,7 +68,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 Wander();
             }
         }
-        else if(!attributes.dying && character != PlayerInfo.selectedCreature && resting && !huntingFood && !chasingEnemy)
+        else if(!attributes.dying && character != PlayerInfo.selectedCreature && resting && !huntingFood && attackTimes == 0)
         {
             if (anim)
             {
@@ -82,28 +80,31 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
     void Wander()
     {
-        Vector3 randomCircle = Random.insideUnitCircle * 20;
+        if (attributes.movementRemaining > 0)
+        {
+            Vector3 randomCircle = Random.insideUnitCircle * 20;
 
-        if (randomCircle.x < 0 && randomCircle.x > -10.0f)
-        {
-            randomCircle.x = -10.0f;
-        }
-        else if (randomCircle.x > 0 && randomCircle.x < 10.0f)
-        {
-            randomCircle.x = 10.0f;
-        }
+            if (randomCircle.x < 0 && randomCircle.x > -10.0f)
+            {
+                randomCircle.x = -10.0f;
+            }
+            else if (randomCircle.x > 0 && randomCircle.x < 10.0f)
+            {
+                randomCircle.x = 10.0f;
+            }
 
-        if (randomCircle.y < 0 && randomCircle.y > -10.0f)
-        {
-            randomCircle.y = -10.0f;
-        }
-        else if (randomCircle.y > 0 && randomCircle.y < 10.0f)
-        {
-            randomCircle.y = 10.0f;
-        }
+            if (randomCircle.y < 0 && randomCircle.y > -10.0f)
+            {
+                randomCircle.y = -10.0f;
+            }
+            else if (randomCircle.y > 0 && randomCircle.y < 10.0f)
+            {
+                randomCircle.y = 10.0f;
+            }
 
-        destination = new Vector3(gameObject.transform.position.x + randomCircle.x, gameObject.transform.position.y, gameObject.transform.position.z + randomCircle.y);
-        setWalk();
+            destination = new Vector3(gameObject.transform.position.x + randomCircle.x, gameObject.transform.position.y, gameObject.transform.position.z + randomCircle.y);
+            setWalk();
+        }
     }
     
     void HuntForFood ()
@@ -130,7 +131,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 }
             }
 
-            if (closestObject == null && !fastResting && !chasingEnemy)
+            if (closestObject == null && !fastResting && attackTimes == 0)
             {
                 Wander();
             }
@@ -142,6 +143,9 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                     destination = closestObject.transform.position;
                     foundFood = true;
 
+                    attackTimes = 0;
+                    stopAttack();
+
                     obstacle.enabled = false;
                     agent.enabled = true;
                     agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
@@ -152,7 +156,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                     }
                     agent.SetDestination(closestObject.transform.position);
                 }
-                else
+                else if (!fastResting && attackTimes == 0)
                 {
                     Wander();
                 }
@@ -191,11 +195,8 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
     void FightCreatures()
     {
-        if (!attributes.dying && character != PlayerInfo.selectedCreature && !resting && !fastResting && !foundFood && !goingToEnemy)
+        if (!attributes.dying && character != PlayerInfo.selectedCreature && !resting && !fastResting && !foundFood && attackTimes == 0)
         {
-            isWalking = false;
-            chasingEnemy = true;
-
             List<GameObject> enemiesObj = new List<GameObject>();
             enemiesObj.AddRange(GameObject.FindGameObjectsWithTag("EnemySpecies"));
 
@@ -243,7 +244,9 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                     {
                         if (randomChance >= 75)
                         {
+                            isWalking = false;
                             goToEnemy();
+                            attackTimes = 3;
                             StartCoroutine(TimeoutAttack());
                         }
                         else
@@ -260,7 +263,9 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                     {
                         if (randomChance >= 50)
                         {
+                            isWalking = false;
                             goToEnemy();
+                            attackTimes = 3;
                             StartCoroutine(TimeoutAttack());
                         }
                         else
@@ -277,7 +282,9 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                     {
                         if (randomChance >= 25)
                         {
+                            isWalking = false;
                             goToEnemy();
+                            attackTimes = 3;
                             StartCoroutine(TimeoutAttack());
                         }
                         else
@@ -293,12 +300,20 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 }
             }
         }
-        else if (!attributes.dying && character != PlayerInfo.selectedCreature && !fastResting && !foundFood && goingToEnemy && attackTimes > 0)
+        else if (!attributes.dying && character != PlayerInfo.selectedCreature && !fastResting && !foundFood && attackTimes > 0)
         {
-            if (Vector3.Distance(gameObject.transform.position, closestEnemy.obj.transform.position) <= 12.0)
+            if (!closestEnemy.obj)
             {
-                agent.Stop();
-                agent.enabled = false;
+                attackTimes = 0;
+                stopAttack();
+            }
+            else if (Vector3.Distance(gameObject.transform.position, closestEnemy.obj.transform.position) <= 12.0)
+            {
+                if (agent.enabled == true)
+                {
+                    agent.Stop();
+                    agent.enabled = false;
+                }
                 obstacle.enabled = true;
                 if (anim)
                 {
@@ -314,31 +329,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 goToEnemy();
             }
         }
-        else if (!attributes.dying && character != PlayerInfo.selectedCreature && !resting && !fastResting && !foundFood && goingToEnemy && attackTimes == 0)
-        {
-            goingToEnemy = false;
-            if (agent.enabled == true)
-            {
-                agent.Stop();
-                agent.enabled = false;
-            }
-            obstacle.enabled = true;
-            if (anim)
-            {
-                anim.SetBool("walking", false);
-            }
-            int sameEnemyIndex = enemies.FindIndex(x => x.obj == closestEnemy.obj);
-            if (sameEnemyIndex >= 0)
-            {
-                enemies[sameEnemyIndex].attackable = false;
-            }
-            StartCoroutine(EnableAttackingEnemy(closestEnemy));
-        }
     }
 
     private void goToEnemy()
     {
-        goingToEnemy = true;
         obstacle.enabled = false;
         agent.enabled = true;
         agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
@@ -347,7 +341,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         {
             anim.SetBool("walking", true);
         }
-        agent.SetDestination(closestEnemy.transform.position);
+        agent.SetDestination(closestEnemy.obj.transform.position);
     }
 
     private void attackEnemy()
@@ -357,7 +351,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         SpriteRenderer spriteRenderer = attackSprite.AddComponent<SpriteRenderer>();
         Sprite cloudSprite = Resources.Load<Sprite>("cloud-normal");
         spriteRenderer.sprite = cloudSprite;
-        attackSprite.transform.position = closestEnemy.transform.position;
+        attackSprite.transform.position = closestEnemy.obj.transform.position;
 
         GameObject angrySprite = new GameObject("AngrySprite");
         SpriteRenderer angrySpriteRenderer = angrySprite.AddComponent<SpriteRenderer>();
@@ -370,8 +364,8 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         angrySprite.transform.position = angryPosition;
 
 
-        int damageDealt = 5 + 5 * attributes.attackUpgrade - 5 * closestEnemy.GetComponent<EnemiesAttributes>().deffenseUpgrade;
-        closestEnemy.GetComponent<EnemiesAttributes>().life -= damageDealt;
+        int damageDealt = 5 + 5 * attributes.attackUpgrade - 5 * closestEnemy.obj.GetComponent<EnemiesAttributes>().deffenseUpgrade;
+        closestEnemy.obj.GetComponent<EnemiesAttributes>().life -= damageDealt;
 
         StartCoroutine(FlashCloud(attackSprite));
         StartCoroutine(FinishAttack(attackSprite, angrySprite));
@@ -394,6 +388,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         Destroy(attackSprite);
         Destroy(angrySprite);
         attackTimes--;
+        if(attackTimes == 0)
+        {
+            stopAttack();
+        }
         lockAttack = false;
     }
     
@@ -403,6 +401,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         if (cancelTimeout == 0)
         {
             attackTimes = 0;
+            stopAttack();
         }
         else
         {
@@ -418,6 +417,34 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         if (sameEnemyIndex >= 0)
         {
             enemies[sameEnemyIndex].attackable = true;
+        }
+    }
+
+    private void stopAttack()
+    {
+        if (agent.enabled == true)
+        {
+            agent.Stop();
+            agent.enabled = false;
+        }
+        obstacle.enabled = true;
+        if (anim)
+        {
+            anim.SetBool("walking", false);
+        }
+        int sameEnemyIndex = enemies.FindIndex(x => x.obj == closestEnemy.obj);
+        if (sameEnemyIndex >= 0)
+        {
+            enemies[sameEnemyIndex].attackable = false;
+        }
+
+        if (closestEnemy.obj)
+        {
+            StartCoroutine(EnableAttackingEnemy(closestEnemy));
+        }
+        else if (sameEnemyIndex >= 0)
+        {
+            enemies.RemoveAt(sameEnemyIndex);
         }
     }
 
@@ -454,11 +481,17 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
     void Update ()
     {
+        if(attackTimes < 0)
+        {
+            attackTimes = 0;
+        }
         if(character == PlayerInfo.selectedCreature)
         {
             isWalking = false;
             foundFood = false;
             huntingFood = false;
+            attackTimes = 0;
+
             if (agent.enabled == true)
             {
                 agent.Stop();
