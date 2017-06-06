@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +14,8 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
     public bool fastResting = true;
     public bool huntingFood = false;
     public bool foundFood = false;
+    public int hitByEnemy = 0;
+    public GameObject enemyCreatureHit;
     public Vector3 destination;
     public float walkSide = 0;
     public float walkUp = 0;
@@ -21,6 +24,13 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
     public SpriteRenderer sprite;
     public GameObject closestObject;
     public int species;
+    public bool lockAttack = false;
+    public GameObject enemyRunningFrom;
+    public int cancelTimeout = 0;
+    public int attackTimes = 0;
+    public Prey closestEnemy;
+    public List<Prey> enemies = new List<Prey>();
+
 
     void Start()
     {
@@ -30,6 +40,8 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         float randomStart = Random.value * 3;
         InvokeRepeating("WanderOrStay", randomStart, 3);
         InvokeRepeating("HuntForFood", randomStart, 1);
+        InvokeRepeating("FightCreatures", randomStart, 1);
+        InvokeRepeating("DefendOrRun", randomStart, 1);
         agent = gameObject.GetComponent<NavMeshAgent>();
         obstacle = gameObject.GetComponent<NavMeshObstacle>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
@@ -46,7 +58,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
     void WanderOrStay()
     {
-        if (!attributes.dying && !isWalking && !resting && !huntingFood)
+        if (!attributes.dying && !isWalking && !resting && !huntingFood && attackTimes == 0)
         {
             float randomValue = Random.value;
             if (randomValue < 0.7)
@@ -54,7 +66,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                 Wander();
             }
         }
-        else if (!attributes.dying && resting && !huntingFood)
+        else if (!attributes.dying && resting && !huntingFood && attackTimes == 0)
         {
             if (anim)
             {
@@ -116,29 +128,36 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                     }
                 }
             }
-            if (closestObject == null && !fastResting)
+
+            if (closestObject == null && !fastResting && attackTimes == 0)
             {
                 Wander();
             }
-            else if (Vector3.Distance(transform.position, closestObject.transform.position) <= (attributes.perceptionRay + attributes.perceptionRay * attributes.perceptionUpgrade))
+            else if (closestObject != null)
             {
-                closestObject.GetComponent<FoodMarks>().speciesHunting[species] = character;
-                destination = closestObject.transform.position;
-                foundFood = true;
-
-                obstacle.enabled = false;
-                agent.enabled = true;
-                agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
-
-                if (anim)
+                if (Vector3.Distance(transform.position, closestObject.transform.position) <= (attributes.perceptionRay + attributes.perceptionRay * attributes.perceptionUpgrade))
                 {
-                    anim.SetBool("walking", true);
+                    closestObject.GetComponent<FoodMarks>().speciesHunting[species] = character;
+                    destination = closestObject.transform.position;
+                    foundFood = true;
+
+                    attackTimes = 0;
+                    stopAttack();
+
+                    obstacle.enabled = false;
+                    agent.enabled = true;
+                    agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+
+                    if (anim)
+                    {
+                        anim.SetBool("walking", true);
+                    }
+                    agent.SetDestination(closestObject.transform.position);
                 }
-                agent.SetDestination(closestObject.transform.position);
-            }
-            else
-            {
-                Wander();
+                else if (!fastResting && attackTimes == 0)
+                {
+                    Wander();
+                }
             }
         }
         else if (foundFood && closestObject == null)
@@ -169,6 +188,376 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             }
             obstacle.enabled = true;
             Wander();
+        }
+    }
+
+    void FightCreatures()
+    {
+        if (!attributes.dying && !resting && !fastResting && !foundFood && attackTimes == 0)
+        {
+            List<GameObject> enemiesObj = new List<GameObject>();
+            enemiesObj.AddRange(GameObject.FindGameObjectsWithTag("EnemySpecies").Where(x => x.transform.parent.name != gameObject.transform.parent.name));
+            enemiesObj.AddRange(GameObject.FindGameObjectsWithTag("ControllableSpecies"));
+
+            closestEnemy = null;
+            foreach (GameObject obj in enemiesObj)
+            {
+                Prey enemy = new Prey(obj, true);
+                int sameEnemyIndex = enemies.FindIndex(x => x.obj == enemy.obj);
+
+                if (sameEnemyIndex == -1)
+                {
+                    enemies.Add(enemy);
+                }
+
+                if (closestEnemy == null)
+                {
+                    if (sameEnemyIndex == -1)
+                    {
+                        closestEnemy = enemy;
+                    }
+                    else if (enemies[sameEnemyIndex].attackable)
+                    {
+                        closestEnemy = enemy;
+                    }
+                }
+                else if (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestEnemy.obj.transform.position))
+                {
+                    if (sameEnemyIndex == -1)
+                    {
+                        closestEnemy = enemy;
+                    }
+                    else if (enemies[sameEnemyIndex].attackable)
+                    {
+                        closestEnemy = enemy;
+                    }
+                }
+            }
+
+            if (closestEnemy != null)
+            {
+                if (Vector3.Distance(transform.position, closestEnemy.obj.transform.position) <= 125)
+                {
+                    float randomChance = Random.value * 100;
+                    if (attributes.attackUpgrade == 0)
+                    {
+                        if (randomChance >= 75)
+                        {
+                            isWalking = false;
+                            goToEnemy();
+                            attackTimes = 3;
+                            StartCoroutine(TimeoutAttack());
+                        }
+                        else
+                        {
+                            int sameEnemyIndex = enemies.FindIndex(x => x.obj == closestEnemy.obj);
+                            if (sameEnemyIndex >= 0)
+                            {
+                                enemies[sameEnemyIndex].attackable = false;
+                            }
+                            StartCoroutine(EnableAttackingEnemy(closestEnemy));
+                        }
+                    }
+                    else if (attributes.attackUpgrade == 1)
+                    {
+                        if (randomChance >= 50)
+                        {
+                            isWalking = false;
+                            goToEnemy();
+                            attackTimes = 3;
+                            StartCoroutine(TimeoutAttack());
+                        }
+                        else
+                        {
+                            int sameEnemyIndex = enemies.FindIndex(x => x.obj == closestEnemy.obj);
+                            if (sameEnemyIndex >= 0)
+                            {
+                                enemies[sameEnemyIndex].attackable = false;
+                            }
+                            StartCoroutine(EnableAttackingEnemy(closestEnemy));
+                        }
+                    }
+                    else if (attributes.attackUpgrade == 2)
+                    {
+                        if (randomChance >= 25)
+                        {
+                            isWalking = false;
+                            goToEnemy();
+                            attackTimes = 3;
+                            StartCoroutine(TimeoutAttack());
+                        }
+                        else
+                        {
+                            int sameEnemyIndex = enemies.FindIndex(x => x.obj == closestEnemy.obj);
+                            if (sameEnemyIndex >= 0)
+                            {
+                                enemies[sameEnemyIndex].attackable = false;
+                            }
+                            StartCoroutine(EnableAttackingEnemy(closestEnemy));
+                        }
+                    }
+                }
+            }
+        }
+        else if (!attributes.dying && character != PlayerInfo.selectedCreature && !fastResting && !foundFood && attackTimes > 0)
+        {
+            if (!closestEnemy.obj)
+            {
+                attackTimes = 0;
+                stopAttack();
+            }
+            else if (Vector3.Distance(gameObject.transform.position, closestEnemy.obj.transform.position) <= 12.0)
+            {
+                if (agent.enabled == true)
+                {
+                    agent.Stop();
+                    agent.enabled = false;
+                }
+                obstacle.enabled = true;
+                if (anim)
+                {
+                    anim.SetBool("walking", false);
+                }
+                if (!lockAttack)
+                {
+                    attackEnemy(closestEnemy.obj);
+                }
+            }
+            else
+            {
+                goToEnemy();
+            }
+        }
+    }
+
+    void DefendOrRun()
+    {
+        if (!attributes.dying && character != PlayerInfo.selectedCreature && !foundFood && hitByEnemy > 0)
+        {
+            float randomRunAttack = Random.value * 100;
+
+            if (((attributes.movementUpgrade == 2 && randomRunAttack > 90) ||
+                (attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
+                (attributes.deffenseUpgrade == 0 && attributes.movementUpgrade == 0 && randomRunAttack > 50) ||
+                (attributes.deffenseUpgrade == 1 && randomRunAttack > 25) ||
+                (attributes.deffenseUpgrade == 2 && randomRunAttack > 10) ||
+                (attributes.deffenseUpgrade == 3)) &&
+                (enemyRunningFrom == null || enemyRunningFrom != enemyCreatureHit))
+            {
+                attackTimes = 0;
+                stopAttack();
+                isWalking = false;
+
+                if (enemyCreatureHit)
+                {
+                    attackEnemy(enemyCreatureHit);
+                    hitByEnemy--;
+                }
+            }
+            else if (!fastResting)
+            {
+                if (Vector3.Distance(gameObject.transform.position, enemyCreatureHit.transform.position) < 125)
+                {
+                    enemyRunningFrom = enemyCreatureHit;
+                    Vector3 diffPosition = gameObject.transform.position - enemyCreatureHit.transform.position;
+                    Vector3 positionToRaycast = gameObject.transform.position;
+                    Vector3 positionToRun = gameObject.transform.position;
+
+                    for (int i = 4; i <= 1; i--)
+                    {
+                        positionToRaycast.x = gameObject.transform.position.x + 6 * i;
+                        if (diffPosition.x < 0)
+                        {
+                            positionToRaycast.x = gameObject.transform.position.x - 6 * i;
+                        }
+
+                        positionToRaycast.z = gameObject.transform.position.z + 6 * i;
+                        if (diffPosition.z < 0)
+                        {
+                            positionToRaycast.z = gameObject.transform.position.z - 6 * i;
+                        }
+
+                        RaycastHit hitInfo = new RaycastHit();
+                        bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(positionToRaycast), out hitInfo);
+                        if (hit)
+                        {
+                            if (hitInfo.transform.gameObject.tag == "Terrain")
+                            {
+                                positionToRun = positionToRaycast;
+                            }
+                        }
+                    }
+
+                    if (positionToRun != gameObject.transform.position)
+                    {
+                        obstacle.enabled = false;
+                        agent.enabled = true;
+                        agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+
+                        if (anim)
+                        {
+                            anim.SetBool("walking", true);
+                        }
+                        agent.SetDestination(positionToRun);
+                    }
+                    else
+                    {
+                        Wander();
+                    }
+                }
+                else
+                {
+                    hitByEnemy--;
+                    if (agent.enabled == true)
+                    {
+                        agent.Stop();
+                        agent.enabled = false;
+                    }
+                    obstacle.enabled = true;
+                    if (anim)
+                    {
+                        anim.SetBool("walking", false);
+                    }
+                }
+            }
+        }
+    }
+
+    private void goToEnemy()
+    {
+        obstacle.enabled = false;
+        agent.enabled = true;
+        agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+
+        if (anim)
+        {
+            anim.SetBool("walking", true);
+        }
+        agent.SetDestination(closestEnemy.obj.transform.position);
+    }
+
+    private void attackEnemy(GameObject enemyOb)
+    {
+        lockAttack = true;
+        GameObject attackSprite = new GameObject("AttackSprite");
+        SpriteRenderer spriteRenderer = attackSprite.AddComponent<SpriteRenderer>();
+        Sprite cloudSprite = Resources.Load<Sprite>("cloud-normal");
+        spriteRenderer.sprite = cloudSprite;
+        attackSprite.transform.position = enemyOb.transform.position;
+
+        GameObject angrySprite = new GameObject("AngrySprite");
+        SpriteRenderer angrySpriteRenderer = angrySprite.AddComponent<SpriteRenderer>();
+        Sprite angrySpriteRender = Resources.Load<Sprite>(gameObject.transform.parent.GetComponent<EnemiesGlobalAttributes>().species + "-atk");
+        angrySpriteRenderer.sprite = angrySpriteRender;
+        Vector3 angryPosition;
+        angryPosition.x = gameObject.transform.position.x + gameObject.GetComponent<BoxCollider>().size.x + 1;
+        angryPosition.y = gameObject.transform.position.y + gameObject.GetComponent<BoxCollider>().size.y + 1;
+        angryPosition.z = gameObject.transform.position.z;
+        angrySprite.transform.position = angryPosition;
+
+
+        if (enemyOb.tag == "ControllableSpecies")
+        {
+            enemyOb.GetComponent<PlayerAutonomousBehavior>().hitByEnemy++;
+            enemyOb.GetComponent<PlayerAutonomousBehavior>().enemyCreatureHit = gameObject;
+            int damageDealt = 5 + 5 * attributes.attackUpgrade - 5 * enemyOb.GetComponent<SpeciesAttributes>().deffenseUpgrade;
+            enemyOb.GetComponent<SpeciesAttributes>().life -= damageDealt;
+        }
+        else
+        {
+            enemyOb.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy++;
+            enemyOb.GetComponent<EnemiesAutonomousBehavior>().enemyCreatureHit = gameObject;
+            int damageDealt = 5 + 5 * attributes.attackUpgrade - 5 * enemyOb.GetComponent<EnemiesAttributes>().deffenseUpgrade;
+            enemyOb.GetComponent<EnemiesAttributes>().life -= damageDealt;
+        }
+
+        StartCoroutine(FlashCloud(attackSprite));
+        StartCoroutine(FinishAttack(attackSprite, angrySprite));
+    }
+
+    IEnumerator FlashCloud(GameObject attackSprite)
+    {
+        yield return new WaitForSeconds(0.333f);
+        SpriteRenderer spriteRenderer = attackSprite.GetComponent<SpriteRenderer>();
+        Sprite cloudSprite = Resources.Load<Sprite>("cloud-flash");
+        spriteRenderer.sprite = cloudSprite;
+        yield return new WaitForSeconds(0.333f);
+        cloudSprite = Resources.Load<Sprite>("cloud-normal");
+        spriteRenderer.sprite = cloudSprite;
+    }
+
+    IEnumerator FinishAttack(GameObject attackSprite, GameObject angrySprite)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(attackSprite);
+        Destroy(angrySprite);
+        attackTimes--;
+        if (attackTimes == 0)
+        {
+            stopAttack();
+        }
+        lockAttack = false;
+
+        if (closestEnemy.obj.tag == "ControllableSpecies")
+        {
+            closestEnemy.obj.GetComponent<PlayerAutonomousBehavior>().hitByEnemy--;
+        }
+        else
+        {
+            closestEnemy.obj.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy--;
+        }
+    }
+
+    IEnumerator TimeoutAttack()
+    {
+        yield return new WaitForSeconds(20);
+        if (cancelTimeout == 0)
+        {
+            attackTimes = 0;
+            stopAttack();
+        }
+        else
+        {
+            cancelTimeout--;
+        }
+    }
+
+    IEnumerator EnableAttackingEnemy(Prey enemy)
+    {
+        yield return new WaitForSeconds(20);
+
+        int sameEnemyIndex = enemies.FindIndex(x => x.obj == enemy.obj);
+        if (sameEnemyIndex >= 0)
+        {
+            enemies[sameEnemyIndex].attackable = true;
+        }
+    }
+
+    private void stopAttack()
+    {
+        if (agent.enabled == true)
+        {
+            agent.Stop();
+            agent.enabled = false;
+        }
+        obstacle.enabled = true;
+        if (anim)
+        {
+            anim.SetBool("walking", false);
+        }
+        int sameEnemyIndex = enemies.FindIndex(x => x.obj == closestEnemy.obj);
+        if (sameEnemyIndex >= 0)
+        {
+            enemies[sameEnemyIndex].attackable = false;
+        }
+
+        if (closestEnemy.obj)
+        {
+            StartCoroutine(EnableAttackingEnemy(closestEnemy));
+        }
+        else if (sameEnemyIndex >= 0)
+        {
+            enemies.RemoveAt(sameEnemyIndex);
         }
     }
 
@@ -205,6 +594,14 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
     void Update()
     {
+        if (attackTimes < 0)
+        {
+            attackTimes = 0;
+        }
+        if (hitByEnemy < 0)
+        {
+            hitByEnemy = 0;
+        }
         if (!isWalking && !agent.enabled)
         {
             if (attributes.movementRemaining < SpeciesAttributes.MAX_MOVEMENT)
