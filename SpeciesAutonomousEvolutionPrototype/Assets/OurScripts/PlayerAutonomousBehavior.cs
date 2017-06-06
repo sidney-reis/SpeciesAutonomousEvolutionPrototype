@@ -344,12 +344,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         {
             float randomRunAttack = Random.value * 100;
 
-            if (((attributes.movementUpgrade == 2 && randomRunAttack > 90) ||
-                (attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
+            if (((attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
                 (attributes.deffenseUpgrade == 0 && attributes.movementUpgrade == 0 && randomRunAttack > 50) ||
                 (attributes.deffenseUpgrade == 1 && randomRunAttack > 25) ||
-                (attributes.deffenseUpgrade == 2 && randomRunAttack > 10) ||
-                (attributes.deffenseUpgrade == 3)) && 
+                (attributes.deffenseUpgrade == 2)) && 
                 (enemyRunningFrom == null || enemyRunningFrom != enemyCreatureHit))
             {
                 attackTimes = 0;
