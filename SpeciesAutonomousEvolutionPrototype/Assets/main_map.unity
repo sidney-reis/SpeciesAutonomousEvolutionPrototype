@@ -481,7 +481,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 63866204}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -514,7 +514,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 2f58f14a8026ce3439b214297d881a63, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -938,6 +938,7 @@ MonoBehaviour:
   lockAttack: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
+  enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
   destination: {x: 0, y: 0, z: 0}
@@ -1991,9 +1992,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -2953,6 +2954,7 @@ MonoBehaviour:
   lockAttack: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
+  enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
   destination: {x: 0, y: 0, z: 0}
@@ -3432,7 +3434,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 201.3, y: -15}
+  m_AnchoredPosition: {x: 49.8, y: -15}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &538072857
@@ -3455,13 +3457,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -4055,8 +4057,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -4065,6 +4067,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &638276708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4455,8 +4461,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -4465,6 +4471,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &711562903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4817,8 +4827,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -4827,6 +4837,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &753457977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5033,8 +5047,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -5043,6 +5057,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &756922921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6065,8 +6083,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -6075,6 +6093,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &910443150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7355,6 +7377,7 @@ MonoBehaviour:
   lockAttack: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
+  enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
   destination: {x: 0, y: 0, z: 0}
@@ -7534,8 +7557,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -7544,6 +7567,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1178477039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7857,8 +7884,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -7867,6 +7894,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1193338444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8864,8 +8895,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.5, y: -0.2}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchoredPosition: {x: -2.8, y: 8}
+  m_SizeDelta: {x: 88, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1309140435
 MonoBehaviour:
@@ -8886,7 +8917,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6fc84142505a82f42921eeffa7edc985, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae87c913c7663754fb661d17a350ec5a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9425,9 +9456,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -9583,8 +9614,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -9593,6 +9624,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1373642373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10080,9 +10115,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -11041,8 +11076,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -11051,6 +11086,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1624798551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11290,9 +11329,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -11469,8 +11508,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -11479,6 +11518,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1666012949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11736,8 +11779,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -11746,6 +11789,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1677255195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11970,7 +12017,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200.8, y: 3.2}
+  m_AnchoredPosition: {x: 49.2, y: 3.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1681554344
@@ -11993,13 +12040,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -12046,7 +12093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 32.3, y: -15.9}
+  m_AnchoredPosition: {x: -118.3, y: -15.9}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1738135693
@@ -12069,13 +12116,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -12431,6 +12478,7 @@ MonoBehaviour:
   lockAttack: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
+  enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
   destination: {x: 0, y: 0, z: 0}
@@ -12538,7 +12586,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d90a8faf6fb9540b084ef2825cc3a5dc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42544884bd8a22141890d50a28e53562, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12849,7 +12897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.3, y: 3.3}
+  m_AnchoredPosition: {x: -119.2, y: 3.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1843326257
@@ -12872,13 +12920,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
     m_FontSize: 14
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -13261,8 +13309,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -13271,6 +13319,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1939026616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13497,8 +13549,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -13507,6 +13559,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1941566594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13768,8 +13824,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -13778,6 +13834,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1953214478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14094,6 +14154,7 @@ MonoBehaviour:
   lockAttack: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
+  enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
   destination: {x: 0, y: 0, z: 0}
@@ -14207,8 +14268,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -14217,6 +14278,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &1986587046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14737,6 +14802,7 @@ MonoBehaviour:
   lockAttack: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
+  enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
   destination: {x: 0, y: 0, z: 0}
@@ -14885,8 +14951,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -14895,6 +14961,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &2020064392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15448,8 +15518,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -15458,6 +15528,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &2059780299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15781,8 +15855,8 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
-  hitByPlayer: 0
-  playerCreatureHit: {fileID: 0}
+  hitByEnemy: 0
+  enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
   walkSide: 0
   walkUp: 0
@@ -15791,6 +15865,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
   species: 0
+  lockAttack: 0
+  enemyRunningFrom: {fileID: 0}
+  cancelTimeout: 0
+  attackTimes: 0
 --- !u!114 &2079516992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16091,7 +16169,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 88.5, y: -8.2}
+  m_AnchoredPosition: {x: 91, y: -31.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2131640780
@@ -16114,12 +16192,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
+    m_FontSize: 10
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 300
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1

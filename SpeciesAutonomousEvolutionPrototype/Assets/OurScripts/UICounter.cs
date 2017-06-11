@@ -14,7 +14,7 @@ public class UICounter : MonoBehaviour {
 	
 	void Update () {
         creatureImage.sprite = Resources.Load<Sprite>(PlayerInfo.selectedSpecies + "-icon");
-        gameObject.transform.position = new Vector3(60, 35, 0);
+        gameObject.transform.position = new Vector3(60, 38, 0);
         string totalCreatures = PlayerInfo.playerCreaturesCount.ToString();
         string currentCreature = (PlayerInfo.selectedCreature + 1).ToString();
 

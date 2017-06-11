@@ -6,6 +6,6 @@ public class UIMenu : MonoBehaviour
 {
     void Update()
     {
-        gameObject.transform.position = new Vector3(150, 105, 0);
+        gameObject.transform.position = new Vector3(150, 108, 0);
     }
 }
