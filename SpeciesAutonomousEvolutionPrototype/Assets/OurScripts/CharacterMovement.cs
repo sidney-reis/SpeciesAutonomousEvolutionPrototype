@@ -76,7 +76,7 @@ public class CharacterMovement : MonoBehaviour {
                 Vector3 position = this.transform.position;
                 position.z = (float)(position.z + (0.1 * GameConstants.movementSpeed + attributes.movementUpgrade * 0.1 * GameConstants.movementSpeed));
                 this.transform.position = position;
-                PlayerModel.CurrentModel.steps++;
+                //PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
             }
@@ -86,7 +86,7 @@ public class CharacterMovement : MonoBehaviour {
                 Vector3 position = this.transform.position;
                 position.x = (float)(position.x - (0.1 * GameConstants.movementSpeed + attributes.movementUpgrade * 0.1 * GameConstants.movementSpeed));
                 this.transform.position = position;
-                PlayerModel.CurrentModel.steps++;
+                //PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
                 SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
@@ -98,7 +98,7 @@ public class CharacterMovement : MonoBehaviour {
                 Vector3 position = this.transform.position;
                 position.z = (float)(position.z - (0.1 * GameConstants.movementSpeed + attributes.movementUpgrade * 0.1 * GameConstants.movementSpeed));
                 this.transform.position = position;
-                PlayerModel.CurrentModel.steps++;
+                //PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
             }
@@ -108,7 +108,7 @@ public class CharacterMovement : MonoBehaviour {
                 Vector3 position = this.transform.position;
                 position.x = (float)(position.x + (0.1 * GameConstants.movementSpeed + attributes.movementUpgrade * 0.1 * GameConstants.movementSpeed));
                 this.transform.position = position;
-                PlayerModel.CurrentModel.steps++;
+                //PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
                 fatigueText.text = attributes.movementRemaining.ToString();
                 SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();

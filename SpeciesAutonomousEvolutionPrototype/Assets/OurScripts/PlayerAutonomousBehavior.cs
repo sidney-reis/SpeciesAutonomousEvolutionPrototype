@@ -155,7 +155,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
                     obstacle.enabled = false;
                     agent.enabled = true;
-                    agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+                    agent.speed = (6.0f + attributes.movementUpgrade * 3.5f) * GameConstants.movementSpeed;
 
                     if (anim)
                     {
@@ -398,7 +398,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                     {
                         obstacle.enabled = false;
                         agent.enabled = true;
-                        agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+                        agent.speed = (6.0f + attributes.movementUpgrade * 3.5f) * GameConstants.movementSpeed;
 
                         if (anim)
                         {
@@ -433,7 +433,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     {
         obstacle.enabled = false;
         agent.enabled = true;
-        agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+        agent.speed = (6.0f + attributes.movementUpgrade * 3.5f) * GameConstants.movementSpeed;
 
         if (anim)
         {

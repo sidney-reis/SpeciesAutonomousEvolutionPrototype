@@ -27,22 +27,28 @@ public class Breed : MonoBehaviour {
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").GetComponent<Text>().text = "";
             GameObject.Find("MenuCanvas/MenuBackground/BreedMenu/ErrorText").SetActive(false);
 
-            double normalizedSteps;
             double normalizedFoods;
+            double normalizedRan;
+            double normalizedDefended;
+            double normalizedAttacked;
+
             if(PlayerTime.currentSeconds == PlayerTime.totalSeconds)
             {
-                normalizedSteps = PlayerModel.CurrentModel.steps / PlayerTime.currentSeconds;
                 normalizedFoods = PlayerModel.CurrentModel.foods / PlayerTime.currentSeconds;
-                Debug.Log("current foods on breed: " + PlayerModel.CurrentModel.foods);
-                Debug.Log("current seconds on breed: " + PlayerTime.currentSeconds);
-
+                normalizedRan = PlayerModel.CurrentModel.ran / PlayerTime.currentSeconds;
+                normalizedDefended = PlayerModel.CurrentModel.defended / PlayerTime.currentSeconds;
+                normalizedAttacked = PlayerModel.CurrentModel.attacked / PlayerTime.currentSeconds;
             }
             else
             {
-                normalizedSteps = ((PlayerModel.CurrentModel.steps / PlayerTime.currentSeconds) + (PlayerModel.LegacyModel.steps / PlayerTime.totalSeconds)) / 2;
                 normalizedFoods = ((PlayerModel.CurrentModel.foods / PlayerTime.currentSeconds) + (PlayerModel.LegacyModel.foods / PlayerTime.totalSeconds)) / 2;
+                normalizedRan = ((PlayerModel.CurrentModel.ran / PlayerTime.currentSeconds) + (PlayerModel.LegacyModel.ran/ PlayerTime.totalSeconds)) / 2;
+                normalizedDefended = ((PlayerModel.CurrentModel.defended / PlayerTime.currentSeconds) + (PlayerModel.LegacyModel.ran / PlayerTime.totalSeconds)) / 2;
+                normalizedAttacked = ((PlayerModel.CurrentModel.attacked / PlayerTime.currentSeconds) + (PlayerModel.LegacyModel.ran / PlayerTime.totalSeconds)) / 2;
             }
-            
+
+            /* OLD MOVEMENT SYSTEM
+             
             int newbornMovemet = 0;
             if(activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 0 && normalizedSteps >= 50)
             {
@@ -63,6 +69,60 @@ public class Breed : MonoBehaviour {
             else if (activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 2 && normalizedSteps >= 75)
             {
                 newbornMovemet = 2;
+            }
+            */
+
+            int newbornMovement = 0;
+            int newbornDefense = 0;
+            if (activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 0 && normalizedRan > (normalizedDefended * 1.25))
+            {
+                newbornMovement = 1;
+                newbornDefense = 0;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 1 && normalizedRan > (normalizedDefended * 1.33))
+            {
+                newbornMovement = 2;
+                newbornDefense = 0;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 1 && normalizedRan > (normalizedDefended * 1.25))
+            {
+                newbornMovement = 1;
+                newbornDefense = 0;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 2 && normalizedRan < (normalizedDefended * 1.33))
+            {
+                newbornMovement = 1;
+                newbornDefense = 0;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().movementUpgrade == 2 && normalizedRan > (normalizedDefended * 1.33))
+            {
+                newbornMovement = 2;
+                newbornDefense = 0;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().deffenseUpgrade == 0 && normalizedDefended > (normalizedRan * 1.25))
+            {
+                newbornMovement = 0;
+                newbornDefense = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().deffenseUpgrade == 1 && normalizedDefended > (normalizedRan * 1.33))
+            {
+                newbornMovement = 0;
+                newbornDefense = 2;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().deffenseUpgrade == 1 && normalizedDefended > (normalizedRan * 1.25))
+            {
+                newbornMovement = 0;
+                newbornDefense = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().deffenseUpgrade == 2 && normalizedDefended < (normalizedRan * 1.33))
+            {
+                newbornMovement = 0;
+                newbornDefense = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().deffenseUpgrade == 2 && normalizedDefended > (normalizedRan * 1.33))
+            {
+                newbornMovement = 0;
+                newbornDefense = 2;
             }
 
             int newbornPerception = 0;
@@ -87,6 +147,55 @@ public class Breed : MonoBehaviour {
                 newbornPerception = 2;
             }
 
+            int newbornAttack = 0;
+            if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 0 && normalizedAttacked >= ???)
+            {
+                newbornAttack = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 1 && normalizedAttacked >= ???)
+            {
+                newbornAttack = 2;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 1 && normalizedAttacked >= ???)
+            {
+                newbornAttack = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 2 && normalizedAttacked < ???)
+            {
+                newbornAttack = 1;
+            }
+            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 2 && normalizedAttacked >= ???)
+            {
+                newbornAttack = 2;
+            }
+
+            int newbornCombat = 0;
+
+            if(newbornAttack > newbornDefense)
+            {
+                newbornCombat = newbornAttack;
+            }
+            else
+            {
+                newbornCombat = newbornDefense;
+            }
+
+            if(newbornAttack > 0 && newbornDefense > 0)
+            {
+                if(newbornAttack > newbornMovement)
+                {
+                    newbornMovement = 0;
+                }
+                else if(newbornAttack < newbornMovement)
+                {
+                    newbornAttack = 0;
+                }
+                else
+                {
+                    ???
+                }
+            }
+
             Vector3 childPosition = new Vector3();
             Vector3 childRotation;
             Vector3 childScale;
@@ -109,8 +218,10 @@ public class Breed : MonoBehaviour {
             childAnimator.updateMode = AnimatorUpdateMode.Normal;
             childAnimator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
             
-            childAnimator.SetInteger("movementUpgrade", newbornMovemet);
+            childAnimator.SetInteger("movementUpgrade", newbornMovement);
             childAnimator.SetInteger("perceptionUpgrade", newbornPerception);
+            childAnimator.SetInteger("combatUpgrade", newbornCombat);
+
 
             childObject.transform.parent = GameObject.Find("PlayerCreatures").transform;
             childObject.transform.rotation = Quaternion.Euler(childRotation);
@@ -148,7 +259,7 @@ public class Breed : MonoBehaviour {
             NavMeshAgent agent = childObject.AddComponent<NavMeshAgent>();
             agent.radius = 0.53f;
             agent.height = 1;
-            agent.speed = (6.0f + newbornMovemet * 3.5f) * GameConstants.movementSpeed;
+            agent.speed = (6.0f + newbornMovement * 3.5f) * GameConstants.movementSpeed;
             agent.angularSpeed = 120;
             agent.acceleration = 99;
             agent.stoppingDistance = 0;
@@ -161,8 +272,10 @@ public class Breed : MonoBehaviour {
             
 
             SpeciesAttributes childAttributes = childObject.AddComponent<SpeciesAttributes>();
-            childAttributes.movementUpgrade = newbornMovemet;
+            childAttributes.movementUpgrade = newbornMovement;
             childAttributes.perceptionUpgrade = newbornPerception;
+            childAttributes.attackUpgrade = newbornAttack;
+            childAttributes.deffenseUpgrade = newbornDefense;
             childObject.AddComponent<AttributeUpdater>();
             childObject.AddComponent<CharacterMovement>();
             childObject.AddComponent<FixRotation>();
@@ -176,5 +289,3 @@ public class Breed : MonoBehaviour {
         }
     }
 }
-
-

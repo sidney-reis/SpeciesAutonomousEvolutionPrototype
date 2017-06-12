@@ -14,6 +14,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
     public bool fastResting = true;
     public bool huntingFood = false;
     public bool foundFood = false;
+    public bool counterAttacked = false;
     public int hitByEnemy = 0;
     public GameObject enemyCreatureHit;
     public Vector3 destination;
@@ -146,7 +147,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
                     obstacle.enabled = false;
                     agent.enabled = true;
-                    agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+                    agent.speed = (6.0f + attributes.movementUpgrade * 3.5f) * GameConstants.movementSpeed;
 
                     if (anim)
                     {
@@ -304,10 +305,16 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             if (!closestEnemy.obj)
             {
                 attackTimes = 0;
+                cancelTimeout++;
                 stopAttack();
             }
             else if (Vector3.Distance(gameObject.transform.position, closestEnemy.obj.transform.position) <= 12.0)
             {
+                if (closestEnemy.obj.tag == "ControllableSpecies" && closestEnemy.obj.name == PlayerInfo.selectedCreature.ToString() && GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy == null)
+                {
+                    GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy = gameObject;
+                }
+
                 if (agent.enabled == true)
                 {
                     agent.Stop();
@@ -392,7 +399,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                     {
                         obstacle.enabled = false;
                         agent.enabled = true;
-                        agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+                        agent.speed = (6.0f + attributes.movementUpgrade * 3.5f) * GameConstants.movementSpeed;
 
                         if (anim)
                         {
@@ -427,7 +434,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
     {
         obstacle.enabled = false;
         agent.enabled = true;
-        agent.speed = 6.0f + attributes.movementUpgrade * 3.5f;
+        agent.speed = (6.0f + attributes.movementUpgrade * 3.5f) * GameConstants.movementSpeed;
 
         if (anim)
         {
@@ -494,9 +501,15 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         attackTimes--;
         if (attackTimes == 0)
         {
+            cancelTimeout++;
             stopAttack();
         }
         lockAttack = false;
+
+        if(GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy == gameObject)
+        {
+            StartCoroutine(RemoveFromApproachingEnemy());
+        }
 
         if (closestEnemy.obj.tag == "ControllableSpecies")
         {
@@ -506,6 +519,21 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         {
             closestEnemy.obj.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy--;
         }
+    }
+
+    IEnumerator RemoveFromApproachingEnemy()
+    {
+        if (GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy == gameObject)
+        {
+            yield return new WaitForSeconds(3);
+            GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy = null;
+
+            if (!counterAttacked)
+            {
+                PlayerModel.CurrentModel.ran++;
+            }
+        }
+        counterAttacked = false;
     }
 
     IEnumerator TimeoutAttack()

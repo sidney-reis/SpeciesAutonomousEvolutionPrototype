@@ -6,21 +6,29 @@ public static class PlayerModel
 {
     public struct LegacyModel
     {
-        public static double steps = 0;
         public static double foods = 0;
+        public static double ran = 0;
+        public static double defended = 0;
+        public static double attacked = 0;
     }
 
     public struct CurrentModel
     {
-        public static double steps = 0;
         public static double foods = 0;
+        public static double ran = 0;
+        public static double defended = 0;
+        public static double attacked = 0;
     }
 
     public static void triggerBreed()
     {
-        LegacyModel.steps += CurrentModel.steps;
         LegacyModel.foods += CurrentModel.foods;
-        CurrentModel.steps = 0;
+        LegacyModel.ran += CurrentModel.ran;
+        LegacyModel.defended += CurrentModel.defended;
+        LegacyModel.attacked += CurrentModel.attacked;
         CurrentModel.foods = 0;
+        CurrentModel.ran = 0;
+        CurrentModel.defended = 0;
+        CurrentModel.attacked = 0;
     }
 }

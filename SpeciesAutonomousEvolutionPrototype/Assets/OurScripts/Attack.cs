@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Attack : MonoBehaviour
 {
-    static bool lockAttack = false;
+    public bool lockAttack = false;
 
     public void AttackClick()
     {
@@ -42,6 +42,7 @@ public class Attack : MonoBehaviour
 
             int damageDealt = 5 + 5 * activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade - 5 * passiveCreature.GetComponent<EnemiesAttributes>().deffenseUpgrade;
             passiveCreature.GetComponent<EnemiesAttributes>().life -= damageDealt;
+            PlayerModel.CurrentModel.attacked += damageDealt;
 
             StartCoroutine(FlashCloud(attackSprite));
             StartCoroutine(FinishAttack(attackSprite, angrySprite));
