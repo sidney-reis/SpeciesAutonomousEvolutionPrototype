@@ -19,6 +19,10 @@ public class CounterAttack : MonoBehaviour {
                     enemyBehaviour.counterAttacked = true;
                 }
                 int damageDealt = 5 + 5 * player.GetComponent<SpeciesAttributes>().attackUpgrade - 5 * enemy.GetComponent<EnemiesAttributes>().deffenseUpgrade;
+                if(damageDealt < 0)
+                {
+                    damageDealt = 0;
+                }
                 enemy.GetComponent<EnemiesAttributes>().life -= damageDealt;
 
                 GameObject attackSprite = new GameObject("AttackSprite");

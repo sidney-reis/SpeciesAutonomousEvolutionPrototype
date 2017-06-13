@@ -41,6 +41,10 @@ public class Attack : MonoBehaviour
 
 
             int damageDealt = 5 + 5 * activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade - 5 * passiveCreature.GetComponent<EnemiesAttributes>().deffenseUpgrade;
+            if(damageDealt < 0)
+            {
+                damageDealt = 0;
+            }
             passiveCreature.GetComponent<EnemiesAttributes>().life -= damageDealt;
             PlayerModel.CurrentModel.attacked += damageDealt;
 

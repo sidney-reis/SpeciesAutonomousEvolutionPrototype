@@ -39,8 +39,10 @@ public class CharacterMovement : MonoBehaviour {
         }
         if (character == PlayerInfo.selectedCreature)
         {
-            PlayerModel.CurrentModel.foods++;
-            Debug.Log("foods: " + PlayerModel.CurrentModel.foods);
+            if (attributes.hungry >= 150)
+            {
+                PlayerModel.CurrentModel.foods++;
+            }
         }
 
     }

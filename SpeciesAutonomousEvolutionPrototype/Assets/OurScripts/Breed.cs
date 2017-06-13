@@ -126,45 +126,45 @@ public class Breed : MonoBehaviour {
             }
 
             int newbornPerception = 0;
-            if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 0 && normalizedFoods >= 0.01666)
+            if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 0 && normalizedFoods >= 0.008333) // 1 fruit each 2 minutes
             {
                 newbornPerception = 1;
             }
-            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 1 && normalizedFoods >= 0.025)
+            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 1 && normalizedFoods >= 0.0125) // 1.5 fruit each 2 minutes
             {
                 newbornPerception = 2;
             }
-            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 1 && normalizedFoods >= 0.01666)
+            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 1 && normalizedFoods >= 0.008333)
             {
                 newbornPerception = 1;
             }
-            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 2 && normalizedFoods < 0.025)
+            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 2 && normalizedFoods < 0.0125)
             {
                 newbornPerception = 1;
             }
-            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 2 && normalizedFoods >= 0.025)
+            else if (activeCreature.GetComponent<SpeciesAttributes>().perceptionUpgrade == 2 && normalizedFoods >= 0.0125)
             {
                 newbornPerception = 2;
             }
 
             int newbornAttack = 0;
-            if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 0 && normalizedAttacked >= ???)
+            if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 0 && normalizedAttacked >= 0.23809) // Enough damage to kill 1 creature each 7 minutes
             {
                 newbornAttack = 1;
             }
-            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 1 && normalizedAttacked >= ???)
+            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 1 && normalizedAttacked >= 0.41666) // Enough damage to kill 1 creature each 4 minutes
             {
                 newbornAttack = 2;
             }
-            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 1 && normalizedAttacked >= ???)
+            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 1 && normalizedAttacked >= 0.23809)
             {
                 newbornAttack = 1;
             }
-            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 2 && normalizedAttacked < ???)
+            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 2 && normalizedAttacked < 0.41666)
             {
                 newbornAttack = 1;
             }
-            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 2 && normalizedAttacked >= ???)
+            else if (activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade == 2 && normalizedAttacked >= 0.41666)
             {
                 newbornAttack = 2;
             }
@@ -186,13 +186,9 @@ public class Breed : MonoBehaviour {
                 {
                     newbornMovement = 0;
                 }
-                else if(newbornAttack < newbornMovement)
-                {
-                    newbornAttack = 0;
-                }
                 else
                 {
-                    ???
+                    newbornAttack = 0;
                 }
             }
 

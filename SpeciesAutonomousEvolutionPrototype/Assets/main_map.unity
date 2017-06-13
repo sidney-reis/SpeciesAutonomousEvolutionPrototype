@@ -492,7 +492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -800, y: -444}
+  m_AnchoredPosition: {x: -840.3, y: -467.9}
   m_SizeDelta: {x: 120, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63866206
@@ -1498,7 +1498,7 @@ RectTransform:
   m_Children:
   - {fileID: 1627330572}
   m_Father: {fileID: 1969842954}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3905,7 +3905,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &570526911
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4300,6 +4300,74 @@ Prefab:
     - {fileID: 13687634, guid: c63ea781a273235439e583799176c846, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c63ea781a273235439e583799176c846, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &603052209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 603052210}
+  - component: {fileID: 603052212}
+  - component: {fileID: 603052211}
+  m_Layer: 5
+  m_Name: Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &603052210
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 603052209}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1969842954}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 92.4, y: 7.1}
+  m_SizeDelta: {x: 39.25, y: 24}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &603052211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 603052209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: b8e441516d46bea4fb2b0ac31291b0c2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &603052212
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 603052209}
 --- !u!1001 &607055117
 Prefab:
   m_ObjectHideFlags: 0
@@ -4456,6 +4524,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -4860,6 +4929,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -5226,6 +5296,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -5446,6 +5517,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -6482,6 +6554,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -7956,6 +8029,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -8283,6 +8357,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -9723,6 +9798,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543b16cb73774964892b53106a006258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1358008643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1358008644}
+  - component: {fileID: 1358008646}
+  - component: {fileID: 1358008645}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1358008644
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1358008643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1969842954}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -99.8, y: 7.2}
+  m_SizeDelta: {x: 25, y: 23.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1358008645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1358008643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d5dbe0a594cabbf40a4e17cb447f613b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &1358008646
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1358008643}
 --- !u!1 &1367507144
 GameObject:
   m_ObjectHideFlags: 0
@@ -10013,6 +10156,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -10589,6 +10733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   approachingEnemy: {fileID: 0}
+  ignoredEnemy: []
 --- !u!222 &1447043961
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11351,6 +11496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a78480cff9fc224f8be18e5bc701238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockAttack: 0
 --- !u!4 &1599813896 stripped
 Transform:
   m_PrefabParentObject: {fileID: 445910, guid: c63ea781a273235439e583799176c846, type: 2}
@@ -11612,6 +11758,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -12118,6 +12265,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -12389,6 +12537,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -13158,7 +13307,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1774124369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 604.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1370740027}
@@ -13174,7 +13323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -579, y: -468}
+  m_AnchoredPosition: {x: -630.3, y: -468}
   m_SizeDelta: {x: 300, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774124371
@@ -13919,6 +14068,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -14159,6 +14309,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -14434,6 +14585,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -14836,7 +14988,9 @@ RectTransform:
   m_Children:
   - {fileID: 404979378}
   - {fileID: 585476003}
+  - {fileID: 1358008644}
   - {fileID: 190687501}
+  - {fileID: 603052210}
   m_Father: {fileID: 570526911}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14914,6 +15068,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -15597,6 +15752,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -16164,6 +16320,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -16501,6 +16658,7 @@ MonoBehaviour:
   fastResting: 1
   huntingFood: 0
   foundFood: 0
+  counterAttacked: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}

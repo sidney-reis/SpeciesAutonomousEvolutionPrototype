@@ -240,9 +240,28 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                 if (Vector3.Distance(transform.position, closestEnemy.obj.transform.position) <= 125)
                 {
                     float randomChance = Random.value * 100;
-                    if (attributes.attackUpgrade == 0)
+                    if (attributes.movementUpgrade == 1)
                     {
-                        if (randomChance >= 75)
+                        if (randomChance >= 90)
+                        {
+                            isWalking = false;
+                            goToEnemy();
+                            attackTimes = 3;
+                            StartCoroutine(TimeoutAttack());
+                        }
+                        else
+                        {
+                            int sameEnemyIndex = enemies.FindIndex(x => x.obj == closestEnemy.obj);
+                            if (sameEnemyIndex >= 0)
+                            {
+                                enemies[sameEnemyIndex].attackable = false;
+                            }
+                            StartCoroutine(EnableAttackingEnemy(closestEnemy));
+                        }
+                    }
+                    else if (attributes.attackUpgrade == 0 && attributes.movementUpgrade == 0)
+                    {
+                        if (randomChance >= 85)
                         {
                             isWalking = false;
                             goToEnemy();
@@ -468,6 +487,10 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             enemyOb.GetComponent<PlayerAutonomousBehavior>().hitByEnemy++;
             enemyOb.GetComponent<PlayerAutonomousBehavior>().enemyCreatureHit = gameObject;
             int damageDealt = 5 + 5 * attributes.attackUpgrade - 5 * enemyOb.GetComponent<SpeciesAttributes>().deffenseUpgrade;
+            if (damageDealt < 0)
+            {
+                damageDealt = 0;
+            }
             enemyOb.GetComponent<SpeciesAttributes>().life -= damageDealt;
         }
         else
@@ -475,6 +498,10 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             enemyOb.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy++;
             enemyOb.GetComponent<EnemiesAutonomousBehavior>().enemyCreatureHit = gameObject;
             int damageDealt = 5 + 5 * attributes.attackUpgrade - 5 * enemyOb.GetComponent<EnemiesAttributes>().deffenseUpgrade;
+            if (damageDealt < 0)
+            {
+                damageDealt = 0;
+            }
             enemyOb.GetComponent<EnemiesAttributes>().life -= damageDealt;
         }
 
