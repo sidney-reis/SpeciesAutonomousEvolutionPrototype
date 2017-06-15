@@ -23,6 +23,5 @@ public class CounterCombatHandler : MonoBehaviour {
         {
             counterBackground.SetActive(false);
         }
-        counterBackground.SetActive(true);
     }
 }

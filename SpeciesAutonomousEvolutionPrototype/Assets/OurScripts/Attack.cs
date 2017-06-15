@@ -13,7 +13,6 @@ public class Attack : MonoBehaviour
 
         if (Vector3.Distance(activeCreature.transform.position, passiveCreature.transform.position) > 12.0)
         {
-            Debug.Log(Vector3.Distance(activeCreature.transform.position, passiveCreature.transform.position));
             GameObject.Find("MenuCanvas/MenuBackground/CombatMenu/ErrorText").SetActive(true);
             GameObject.Find("MenuCanvas/MenuBackground/CombatMenu/ErrorText").GetComponent<Text>().text = "Creature is too far!";
         }

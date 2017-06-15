@@ -14,11 +14,8 @@ public class EnemiesCharacterMovement : MonoBehaviour
         if (target.gameObject.tag.Equals("Food") == true)
         {
             foodEaten();
-            RespawningFood foodTarget = new RespawningFood();
-            foodTarget.food = target.gameObject;
-            foodTarget.respawningTime = 100;
-            FoodRespawn.foodRespawning.Add(foodTarget);
             target.gameObject.SetActive(false);
+            StartCoroutine(RespawnFood(target.gameObject));
         }
         if (target.gameObject.tag.Equals("RandomFood") == true)
         {
@@ -26,6 +23,12 @@ public class EnemiesCharacterMovement : MonoBehaviour
             Destroy(target.gameObject);
             RandomFoodGenerator.randomFoodCount--;
         }
+    }
+
+    IEnumerator RespawnFood(GameObject food)
+    {
+        yield return new WaitForSeconds(60);
+        food.SetActive(true);
     }
 
     private void foodEaten()
