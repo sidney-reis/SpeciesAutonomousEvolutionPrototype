@@ -255,7 +255,7 @@ public class Breed : MonoBehaviour {
             NavMeshAgent agent = childObject.AddComponent<NavMeshAgent>();
             agent.radius = 0.53f;
             agent.height = 1;
-            agent.speed = (6.0f + newbornMovement * 3.5f) * GameConstants.movementSpeed;
+            agent.speed = (6.0f + newbornMovement * 3) * GameConstants.movementSpeed;
             agent.angularSpeed = 120;
             agent.acceleration = 99;
             agent.stoppingDistance = 0;

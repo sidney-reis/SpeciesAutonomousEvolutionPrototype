@@ -15,6 +15,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
     public bool huntingFood = false;
     public bool foundFood = false;
     public bool counterAttacked = false;
+    public bool running = false;
     public int hitByEnemy = 0;
     public GameObject enemyCreatureHit;
     public Vector3 destination;
@@ -42,7 +43,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         InvokeRepeating("WanderOrStay", randomStart, 3);
         InvokeRepeating("HuntForFood", randomStart, 1);
         InvokeRepeating("FightCreatures", randomStart, 1);
-        InvokeRepeating("DefendOrRun", randomStart, 1);
+        InvokeRepeating("DefendOrRun", randomStart, 0.5f);
         agent = gameObject.GetComponent<NavMeshAgent>();
         obstacle = gameObject.GetComponent<NavMeshObstacle>();
         sprite = gameObject.GetComponent<SpriteRenderer>();
@@ -147,7 +148,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
                     obstacle.enabled = false;
                     agent.enabled = true;
-                    agent.speed = (6.0f + attributes.movementUpgrade * 3.5f) * GameConstants.movementSpeed;
+                    agent.speed = (6.0f + attributes.movementUpgrade * 3) * GameConstants.movementSpeed;
 
                     if (anim)
                     {
@@ -319,7 +320,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                 }
             }
         }
-        else if (!attributes.dying && character != PlayerInfo.selectedCreature && !fastResting && !foundFood && attackTimes > 0)
+        else if (!attributes.dying && !fastResting && !foundFood && attackTimes > 0)
         {
             if (!closestEnemy.obj)
             {
@@ -358,16 +359,14 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
     void DefendOrRun()
     {
-        if (!attributes.dying && character != PlayerInfo.selectedCreature && !foundFood && hitByEnemy > 0)
+        if (!attributes.dying && !foundFood && hitByEnemy > 0)
         {
             float randomRunAttack = Random.value * 100;
-
-            if (((attributes.movementUpgrade == 2 && randomRunAttack > 90) ||
-                (attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
+            
+            if (((attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
                 (attributes.deffenseUpgrade == 0 && attributes.movementUpgrade == 0 && randomRunAttack > 50) ||
                 (attributes.deffenseUpgrade == 1 && randomRunAttack > 25) ||
-                (attributes.deffenseUpgrade == 2 && randomRunAttack > 10) ||
-                (attributes.deffenseUpgrade == 3)) &&
+                (attributes.deffenseUpgrade == 2)) &&
                 (enemyRunningFrom == null || enemyRunningFrom != enemyCreatureHit))
             {
                 attackTimes = 0;
@@ -382,14 +381,15 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             }
             else if (!fastResting)
             {
-                if (Vector3.Distance(gameObject.transform.position, enemyCreatureHit.transform.position) < 125)
+                if (Vector3.Distance(gameObject.transform.position, enemyCreatureHit.transform.position) < 45)
                 {
+                    running = true;
                     enemyRunningFrom = enemyCreatureHit;
                     Vector3 diffPosition = gameObject.transform.position - enemyCreatureHit.transform.position;
                     Vector3 positionToRaycast = gameObject.transform.position;
                     Vector3 positionToRun = gameObject.transform.position;
 
-                    for (int i = 4; i <= 1; i--)
+                    for (int i = 4; i >= 1; i--)
                     {
                         positionToRaycast.x = gameObject.transform.position.x + 6 * i;
                         if (diffPosition.x < 0)
@@ -404,7 +404,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                         }
 
                         RaycastHit hitInfo = new RaycastHit();
-                        bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(positionToRaycast), out hitInfo);
+                        bool hit = Physics.Raycast(positionToRaycast, Vector3.down, out hitInfo);
                         if (hit)
                         {
                             if (hitInfo.transform.gameObject.tag == "Terrain")
@@ -418,7 +418,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                     {
                         obstacle.enabled = false;
                         agent.enabled = true;
-                        agent.speed = (6.0f + attributes.movementUpgrade * 3.5f) * GameConstants.movementSpeed;
+                        agent.speed = (6.0f + attributes.movementUpgrade * 3) * GameConstants.movementSpeed;
 
                         if (anim)
                         {
@@ -433,6 +433,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                 }
                 else
                 {
+                    running = false;
                     hitByEnemy--;
                     if (agent.enabled == true)
                     {
@@ -447,13 +448,27 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                 }
             }
         }
+        else if(running)
+        {
+            if (agent.enabled == true)
+            {
+                agent.Stop();
+                agent.enabled = false;
+            }
+            obstacle.enabled = true;
+            if (anim)
+            {
+                anim.SetBool("walking", false);
+            }
+            running = false;
+        }
     }
 
     private void goToEnemy()
     {
         obstacle.enabled = false;
         agent.enabled = true;
-        agent.speed = (6.0f + attributes.movementUpgrade * 3.5f) * GameConstants.movementSpeed;
+        agent.speed = (6.0f + attributes.movementUpgrade * 3) * GameConstants.movementSpeed;
 
         if (anim)
         {
@@ -538,13 +553,16 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             StartCoroutine(RemoveFromApproachingEnemy());
         }
 
-        if (closestEnemy.obj.tag == "ControllableSpecies")
+        if (closestEnemy.obj)
         {
-            closestEnemy.obj.GetComponent<PlayerAutonomousBehavior>().hitByEnemy--;
-        }
-        else
-        {
-            closestEnemy.obj.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy--;
+            if (closestEnemy.obj.tag == "ControllableSpecies")
+            {
+                closestEnemy.obj.GetComponent<PlayerAutonomousBehavior>().hitByEnemy--;
+            }
+            else
+            {
+                closestEnemy.obj.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy--;
+            }
         }
     }
 
@@ -600,19 +618,22 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         {
             anim.SetBool("walking", false);
         }
-        int sameEnemyIndex = enemies.FindIndex(x => x.obj == closestEnemy.obj);
-        if (sameEnemyIndex >= 0)
+        if (closestEnemy != null)
         {
-            enemies[sameEnemyIndex].attackable = false;
-        }
+            int sameEnemyIndex = enemies.FindIndex(x => x.obj == closestEnemy.obj);
+            if (sameEnemyIndex >= 0)
+            {
+                enemies[sameEnemyIndex].attackable = false;
+            }
 
-        if (closestEnemy.obj)
-        {
-            StartCoroutine(EnableAttackingEnemy(closestEnemy));
-        }
-        else if (sameEnemyIndex >= 0)
-        {
-            enemies.RemoveAt(sameEnemyIndex);
+            if (closestEnemy.obj)
+            {
+                StartCoroutine(EnableAttackingEnemy(closestEnemy));
+            }
+            else if (sameEnemyIndex >= 0)
+            {
+                enemies.RemoveAt(sameEnemyIndex);
+            }
         }
     }
 
@@ -640,7 +661,10 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             walkUp = -0.1f;
         }
 
-        isWalking = true;
+        if (!running)
+        {
+            isWalking = true;
+        }
         if (anim)
         {
             anim.SetBool("walking", true);
@@ -675,7 +699,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             resting = false;
         }
 
-        if (attributes.movementRemaining == 0)
+        if (attributes.movementRemaining <= 0)
         {
             fastResting = true;
             if (anim)
@@ -751,7 +775,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         if (target.gameObject.tag != "Terrain")
         {
             isWalking = false;
-            if (!huntingFood && !foundFood && anim)
+            if (!huntingFood && !foundFood && attackTimes < 1 && anim)
             {
                 anim.SetBool("walking", false);
             }

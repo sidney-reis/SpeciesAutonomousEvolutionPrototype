@@ -79,7 +79,7 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.z = (float)(position.z + (0.1 * GameConstants.movementSpeed + attributes.movementUpgrade * 0.1 * GameConstants.movementSpeed));
+                position.z = (float)(position.z + (0.1 + attributes.movementUpgrade * 0.05) * GameConstants.movementSpeed);
                 this.transform.position = position;
                 //PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
@@ -89,7 +89,7 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.x = (float)(position.x - (0.1 * GameConstants.movementSpeed + attributes.movementUpgrade * 0.1 * GameConstants.movementSpeed));
+                position.x = (float)(position.x - (0.1 + attributes.movementUpgrade * 0.05) * GameConstants.movementSpeed);
                 this.transform.position = position;
                 //PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
@@ -101,7 +101,7 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.z = (float)(position.z - (0.1 * GameConstants.movementSpeed + attributes.movementUpgrade * 0.1 * GameConstants.movementSpeed));
+                position.z = (float)(position.z - (0.1 + attributes.movementUpgrade * 0.05) * GameConstants.movementSpeed);
                 this.transform.position = position;
                 //PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;
@@ -111,7 +111,7 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("walking", true);
                 Vector3 position = this.transform.position;
-                position.x = (float)(position.x + (0.1 * GameConstants.movementSpeed + attributes.movementUpgrade * 0.1 * GameConstants.movementSpeed));
+                position.x = (float)(position.x + (0.1 + attributes.movementUpgrade * 0.05) * GameConstants.movementSpeed);
                 this.transform.position = position;
                 //PlayerModel.CurrentModel.steps++;
                 attributes.movementRemaining--;

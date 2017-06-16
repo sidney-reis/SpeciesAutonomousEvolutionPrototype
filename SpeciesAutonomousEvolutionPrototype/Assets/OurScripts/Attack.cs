@@ -38,6 +38,8 @@ public class Attack : MonoBehaviour
             angryPosition.z = activeCreature.transform.position.z;
             angrySprite.transform.position = angryPosition;
 
+            passiveCreature.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy++;
+            passiveCreature.GetComponent<EnemiesAutonomousBehavior>().enemyCreatureHit = GameObject.Find("PlayerCreatures/" + PlayerInfo.selectedCreature.ToString());
 
             int damageDealt = 5 + 5 * activeCreature.GetComponent<SpeciesAttributes>().attackUpgrade - 5 * passiveCreature.GetComponent<EnemiesAttributes>().deffenseUpgrade;
             if(damageDealt < 0)
