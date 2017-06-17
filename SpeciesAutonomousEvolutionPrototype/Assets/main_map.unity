@@ -1003,6 +1003,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   lockAttack: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   enemyRunningFrom: {fileID: 0}
@@ -3203,6 +3204,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   lockAttack: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   enemyRunningFrom: {fileID: 0}
@@ -4467,6 +4469,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -4872,6 +4875,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -5239,6 +5243,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -5460,6 +5465,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -6497,6 +6503,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -7789,6 +7796,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   lockAttack: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   enemyRunningFrom: {fileID: 0}
@@ -7972,6 +7980,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -8300,6 +8309,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -10099,6 +10109,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -11589,6 +11600,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -12096,6 +12108,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -12368,6 +12381,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -13065,6 +13079,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   lockAttack: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   enemyRunningFrom: {fileID: 0}
@@ -13786,6 +13801,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -14027,6 +14043,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -14231,7 +14248,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1953214472}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 480, y: -15.87, z: 556.6}
+  m_LocalPosition: {x: 377.9, y: -15.87, z: 556.6}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 392175764}
@@ -14303,6 +14320,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -14631,6 +14649,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   lockAttack: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   enemyRunningFrom: {fileID: 0}
@@ -14786,6 +14805,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -15319,6 +15339,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   lockAttack: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   enemyRunningFrom: {fileID: 0}
@@ -15471,6 +15492,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -16039,6 +16061,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -16301,7 +16324,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2071542653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 581.1, y: 1.8, z: 514.5}
+  m_LocalPosition: {x: 681.6, y: 1.8, z: 514.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -16377,6 +16400,7 @@ MonoBehaviour:
   huntingFood: 0
   foundFood: 0
   counterAttacked: 0
+  running: 0
   hitByEnemy: 0
   enemyCreatureHit: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -16727,7 +16751,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2129794891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 556.6, y: 1.8, z: 556.7}
+  m_LocalPosition: {x: 657.1, y: 1.8, z: 556.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
