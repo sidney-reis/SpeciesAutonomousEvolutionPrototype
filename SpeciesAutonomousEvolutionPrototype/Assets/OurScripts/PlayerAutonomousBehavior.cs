@@ -245,7 +245,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
             if (closestEnemy != null)
             {
-                if (Vector3.Distance(transform.position, closestEnemy.obj.transform.position) <= 125)
+                if (Vector3.Distance(transform.position, closestEnemy.obj.transform.position) <= 100)
                 {
                     float randomChance = Random.value * 100;
                     if (attributes.movementUpgrade == 1)
@@ -533,9 +533,12 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             stopAttack();
         }
         lockAttack = false;
-        if (closestEnemy.obj)
+        if (closestEnemy != null)
         {
-            closestEnemy.obj.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy--;
+            if (closestEnemy.obj)
+            {
+                closestEnemy.obj.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy--;
+            }
         }
     }
     

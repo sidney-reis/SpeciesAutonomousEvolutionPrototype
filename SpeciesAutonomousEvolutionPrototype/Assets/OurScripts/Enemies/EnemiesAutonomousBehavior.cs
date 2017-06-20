@@ -32,6 +32,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
     public int attackTimes = 0;
     public Prey closestEnemy;
     public List<Prey> enemies = new List<Prey>();
+    public List<GameObject> attackingEnemies = new List<GameObject>();
 
 
     void Start()
@@ -238,7 +239,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
             if (closestEnemy != null)
             {
-                if (Vector3.Distance(transform.position, closestEnemy.obj.transform.position) <= 125)
+                if (Vector3.Distance(transform.position, closestEnemy.obj.transform.position) <= 100)
                 {
                     float randomChance = Random.value * 100;
                     if (attributes.movementUpgrade == 1)
@@ -356,18 +357,19 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             }
         }
     }
-
+    
     void DefendOrRun()
     {
         if (!attributes.dying && !foundFood && hitByEnemy > 0)
         {
             float randomRunAttack = Random.value * 100;
+            Debug.Log(randomRunAttack);
             
-            if (((attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
+            if ((((attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
                 (attributes.deffenseUpgrade == 0 && attributes.movementUpgrade == 0 && randomRunAttack > 50) ||
                 (attributes.deffenseUpgrade == 1 && randomRunAttack > 25) ||
                 (attributes.deffenseUpgrade == 2)) &&
-                (enemyRunningFrom == null || enemyRunningFrom != enemyCreatureHit))
+                (enemyRunningFrom == null || enemyRunningFrom != enemyCreatureHit)) || attackingEnemies.Contains(enemyCreatureHit))
             {
                 attackTimes = 0;
                 stopAttack();
@@ -375,11 +377,16 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
                 if (enemyCreatureHit)
                 {
+                    if (!attackingEnemies.Contains(enemyCreatureHit))
+                    {
+                        attackingEnemies.Add(enemyCreatureHit);
+                        StartCoroutine(RemoveAttackingEnemy(enemyCreatureHit));
+                    }
                     attackEnemy(enemyCreatureHit);
                     hitByEnemy--;
                 }
             }
-            else if (!fastResting)
+            else if (!fastResting && !attackingEnemies.Contains(enemyCreatureHit))
             {
                 if (Vector3.Distance(gameObject.transform.position, enemyCreatureHit.transform.position) < 45)
                 {
@@ -433,6 +440,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
                 }
                 else
                 {
+                    enemyRunningFrom = null;
                     running = false;
                     hitByEnemy--;
                     if (agent.enabled == true)
@@ -462,6 +470,12 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             }
             running = false;
         }
+    }
+
+    IEnumerator RemoveAttackingEnemy(GameObject enemyCreatureHit)
+    {
+        yield return new WaitForSeconds(10);
+        attackingEnemies.Remove(enemyCreatureHit);
     }
 
     private void goToEnemy()
@@ -553,15 +567,18 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             StartCoroutine(RemoveFromApproachingEnemy());
         }
 
-        if (closestEnemy.obj)
+        if (closestEnemy != null)
         {
-            if (closestEnemy.obj.tag == "ControllableSpecies")
+            if (closestEnemy.obj)
             {
-                closestEnemy.obj.GetComponent<PlayerAutonomousBehavior>().hitByEnemy--;
-            }
-            else
-            {
-                closestEnemy.obj.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy--;
+                if (closestEnemy.obj.tag == "ControllableSpecies")
+                {
+                    closestEnemy.obj.GetComponent<PlayerAutonomousBehavior>().hitByEnemy--;
+                }
+                else
+                {
+                    closestEnemy.obj.GetComponent<EnemiesAutonomousBehavior>().hitByEnemy--;
+                }
             }
         }
     }
