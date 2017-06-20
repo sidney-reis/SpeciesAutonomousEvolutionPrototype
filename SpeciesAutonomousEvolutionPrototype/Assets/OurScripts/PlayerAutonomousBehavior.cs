@@ -40,6 +40,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
     public GameObject closestObject;
     public Prey closestEnemy;
     public List<Prey> enemies = new List<Prey>();
+    public List<GameObject> attackingEnemies = new List<GameObject>();
 
     void Start () {
         anim = GetComponent<Animator>();
@@ -364,10 +365,10 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
         {
             float randomRunAttack = Random.value * 100;
 
-            if (((attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
+            if ((((attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
                 (attributes.deffenseUpgrade == 0 && attributes.movementUpgrade == 0 && randomRunAttack > 50) ||
                 (attributes.deffenseUpgrade == 1 && randomRunAttack > 25) ||
-                (attributes.deffenseUpgrade == 2)) && 
+                (attributes.deffenseUpgrade == 2)) || attackingEnemies.Contains(enemyCreatureHit)) && 
                 (enemyRunningFrom == null || enemyRunningFrom != enemyCreatureHit))
             {
                 attackTimes = 0;
@@ -376,11 +377,16 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
 
                 if (enemyCreatureHit)
                 {
+                    if (!attackingEnemies.Contains(enemyCreatureHit))
+                    {
+                        attackingEnemies.Add(enemyCreatureHit);
+                        StartCoroutine(RemoveAttackingEnemy(enemyCreatureHit));
+                    }
                     attackEnemy(enemyCreatureHit);
                     hitByEnemy--;
                 }
             }
-            else if (!fastResting)
+            else if (!fastResting && !attackingEnemies.Contains(enemyCreatureHit))
             {
                 if (Vector3.Distance(gameObject.transform.position, enemyCreatureHit.transform.position) < 45)
                 {
@@ -434,6 +440,7 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
                 }
                 else
                 {
+                    enemyRunningFrom = null;
                     running = false;
                     hitByEnemy--;
                     if (agent.enabled == true)
@@ -463,6 +470,12 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             }
             running = false;
         }
+    }
+
+    IEnumerator RemoveAttackingEnemy(GameObject enemyCreatureHit)
+    {
+        yield return new WaitForSeconds(10);
+        attackingEnemies.Remove(enemyCreatureHit);
     }
 
     private void goToEnemy()

@@ -363,7 +363,6 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         if (!attributes.dying && !foundFood && hitByEnemy > 0)
         {
             float randomRunAttack = Random.value * 100;
-            Debug.Log(randomRunAttack);
             
             if ((((attributes.movementUpgrade == 1 && randomRunAttack > 75) ||
                 (attributes.deffenseUpgrade == 0 && attributes.movementUpgrade == 0 && randomRunAttack > 50) ||
