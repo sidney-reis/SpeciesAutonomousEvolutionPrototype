@@ -180,7 +180,7 @@ public class Breed : MonoBehaviour {
                 newbornCombat = newbornDefense;
             }
 
-            if(newbornAttack > 0 && newbornDefense > 0)
+            if(newbornAttack > 0 && newbornMovement > 0)
             {
                 if(newbornAttack > newbornMovement)
                 {
@@ -203,7 +203,9 @@ public class Breed : MonoBehaviour {
             childScale.x = 5;
             childScale.y = 5;
             childScale.z = 1;
-            GameObject childObject = new GameObject(PlayerInfo.playerCreaturesCount.ToString());
+            GameObject creaturesNode = GameObject.Find("PlayerCreatures");
+            int lastCreatureName = int.Parse(creaturesNode.transform.GetChild(creaturesNode.transform.childCount - 1).name);
+            GameObject childObject = new GameObject((lastCreatureName+1).ToString());
 
             SpriteRenderer spriteRenderer = childObject.AddComponent<SpriteRenderer>();
             //Sprite creatureSprite = Resources.Load<Sprite>("species_" + PlayerInfo.selectedSpecies.ToString() + "_default");
@@ -272,6 +274,7 @@ public class Breed : MonoBehaviour {
             childAttributes.perceptionUpgrade = newbornPerception;
             childAttributes.attackUpgrade = newbornAttack;
             childAttributes.deffenseUpgrade = newbornDefense;
+            Debug.Log("Newborn generated:\nMovement upgrade: " + newbornMovement + "\nPerception Upgrade: " + newbornPerception + "\nAttack Upgrade: " + newbornAttack + "\nDefense Upgrade: " + newbornDefense + "\n\nCurrent time: "+PlayerTime.currentSeconds+" seconds\nTotal time: "+PlayerTime.totalSeconds+" seconds\nValues in Current Model:\nRan: "+PlayerModel.CurrentModel.ran+ "\nFoods: " + PlayerModel.CurrentModel.foods+ "\nAttacked: " + PlayerModel.CurrentModel.attacked+ "\nDefended: " + PlayerModel.CurrentModel.defended+ "\n\nValues in Legacy Model:\nRan: " + PlayerModel.LegacyModel.ran+ "\nFoods: " + PlayerModel.LegacyModel.foods + "\nAttacked: " + PlayerModel.LegacyModel.attacked + "\nDefended: " + PlayerModel.LegacyModel.defended);
             childObject.AddComponent<AttributeUpdater>();
             childObject.AddComponent<CharacterMovement>();
             childObject.AddComponent<FixRotation>();

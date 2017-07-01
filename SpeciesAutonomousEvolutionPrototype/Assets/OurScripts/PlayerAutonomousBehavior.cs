@@ -128,14 +128,17 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             {
                 if (obj)
                 {
-                    creatureHunting = (int)(obj.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies]);
-                    if ((creatureHunting == -1 || creatureHunting == character) && (closestObject == null))
+                    if (obj.GetComponent<FoodMarks>())
                     {
-                        closestObject = obj;
-                    }
-                    else if ((creatureHunting == -1 || creatureHunting == character) && (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position)))
-                    {
-                        closestObject = obj;
+                        creatureHunting = (int)(obj.GetComponent<FoodMarks>().speciesHunting[PlayerInfo.selectedSpecies]);
+                        if ((creatureHunting == -1 || creatureHunting == character) && (closestObject == null))
+                        {
+                            closestObject = obj;
+                        }
+                        else if ((creatureHunting == -1 || creatureHunting == character) && (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position)))
+                        {
+                            closestObject = obj;
+                        }
                     }
                 }
             }
@@ -388,70 +391,73 @@ public class PlayerAutonomousBehavior : MonoBehaviour {
             }
             else if (!fastResting && !attackingEnemies.Contains(enemyCreatureHit))
             {
-                if (Vector3.Distance(gameObject.transform.position, enemyCreatureHit.transform.position) < 45)
+                if (enemyCreatureHit)
                 {
-                    running = true;
-                    enemyRunningFrom = enemyCreatureHit;
-                    Vector3 diffPosition = gameObject.transform.position - enemyCreatureHit.transform.position;
-                    Vector3 positionToRaycast = gameObject.transform.position;
-                    Vector3 positionToRun = gameObject.transform.position;
-
-                    for (int i = 4; i >= 1; i--)
+                    if (Vector3.Distance(gameObject.transform.position, enemyCreatureHit.transform.position) < 45)
                     {
-                        positionToRaycast.x = gameObject.transform.position.x + 6 * i;
-                        if (diffPosition.x < 0)
-                        {
-                            positionToRaycast.x = gameObject.transform.position.x - 6 * i;
-                        }
+                        running = true;
+                        enemyRunningFrom = enemyCreatureHit;
+                        Vector3 diffPosition = gameObject.transform.position - enemyCreatureHit.transform.position;
+                        Vector3 positionToRaycast = gameObject.transform.position;
+                        Vector3 positionToRun = gameObject.transform.position;
 
-                        positionToRaycast.z = gameObject.transform.position.z + 6 * i;
-                        if (diffPosition.z < 0)
+                        for (int i = 4; i >= 1; i--)
                         {
-                            positionToRaycast.z = gameObject.transform.position.z - 6 * i;
-                        }
-
-                        RaycastHit hitInfo = new RaycastHit();
-                        bool hit = Physics.Raycast(positionToRaycast, Vector3.down, out hitInfo);
-                        if (hit)
-                        {
-                            if (hitInfo.transform.gameObject.tag == "Terrain")
+                            positionToRaycast.x = gameObject.transform.position.x + 6 * i;
+                            if (diffPosition.x < 0)
                             {
-                                positionToRun = positionToRaycast;
+                                positionToRaycast.x = gameObject.transform.position.x - 6 * i;
+                            }
+
+                            positionToRaycast.z = gameObject.transform.position.z + 6 * i;
+                            if (diffPosition.z < 0)
+                            {
+                                positionToRaycast.z = gameObject.transform.position.z - 6 * i;
+                            }
+
+                            RaycastHit hitInfo = new RaycastHit();
+                            bool hit = Physics.Raycast(positionToRaycast, Vector3.down, out hitInfo);
+                            if (hit)
+                            {
+                                if (hitInfo.transform.gameObject.tag == "Terrain")
+                                {
+                                    positionToRun = positionToRaycast;
+                                }
                             }
                         }
-                    }
 
-                    if (positionToRun != gameObject.transform.position)
-                    {
-                        obstacle.enabled = false;
-                        agent.enabled = true;
-                        agent.speed = (6.0f + attributes.movementUpgrade * 3) * GameConstants.movementSpeed;
-
-                        if (anim)
+                        if (positionToRun != gameObject.transform.position)
                         {
-                            anim.SetBool("walking", true);
+                            obstacle.enabled = false;
+                            agent.enabled = true;
+                            agent.speed = (6.0f + attributes.movementUpgrade * 3) * GameConstants.movementSpeed;
+
+                            if (anim)
+                            {
+                                anim.SetBool("walking", true);
+                            }
+                            agent.SetDestination(positionToRun);
                         }
-                        agent.SetDestination(positionToRun);
+                        else
+                        {
+                            Wander();
+                        }
                     }
                     else
                     {
-                        Wander();
-                    }
-                }
-                else
-                {
-                    enemyRunningFrom = null;
-                    running = false;
-                    hitByEnemy--;
-                    if (agent.enabled == true)
-                    {
-                        agent.Stop();
-                        agent.enabled = false;
-                    }
-                    obstacle.enabled = true;
-                    if (anim)
-                    {
-                        anim.SetBool("walking", false);
+                        enemyRunningFrom = null;
+                        running = false;
+                        hitByEnemy--;
+                        if (agent.enabled == true)
+                        {
+                            agent.Stop();
+                            agent.enabled = false;
+                        }
+                        obstacle.enabled = true;
+                        if (anim)
+                        {
+                            anim.SetBool("walking", false);
+                        }
                     }
                 }
             }

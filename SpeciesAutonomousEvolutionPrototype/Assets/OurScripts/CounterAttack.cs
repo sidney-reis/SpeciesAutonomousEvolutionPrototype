@@ -5,19 +5,24 @@ using UnityEngine;
 public class CounterAttack : MonoBehaviour {
     public void CounterAttackClick()
     {
+        GameObject enemy = GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy;
+        if (enemy)
+        {
+            EnemiesAutonomousBehavior enemyBehaviour = enemy.GetComponent<EnemiesAutonomousBehavior>();
+            if (!enemyBehaviour.counterAttacked)
+            {
+                enemyBehaviour.counterAttacked = true;
+                PlayerModel.CurrentModel.defended++;
+                Debug.Log("Current Model 'defended' value increased by 1.\nCurrent 'defended' is: " + PlayerModel.CurrentModel.defended);
+            }
+        }
+
         if (!GameObject.Find("MenuCanvas").GetComponent<Attack>().lockAttack)
         {
             GameObject.Find("MenuCanvas").GetComponent<Attack>().lockAttack = true;
-            GameObject enemy = GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy;
             GameObject player = GameObject.Find("PlayerCreatures/" + PlayerInfo.selectedCreature.ToString());
             if (enemy)
             {
-                EnemiesAutonomousBehavior enemyBehaviour = enemy.GetComponent<EnemiesAutonomousBehavior>();
-                if (!enemyBehaviour.counterAttacked)
-                {
-                    PlayerModel.CurrentModel.defended++;
-                    enemyBehaviour.counterAttacked = true;
-                }
                 int damageDealt = 5 + 5 * player.GetComponent<SpeciesAttributes>().attackUpgrade - 5 * enemy.GetComponent<EnemiesAttributes>().deffenseUpgrade;
                 if(damageDealt < 0)
                 {

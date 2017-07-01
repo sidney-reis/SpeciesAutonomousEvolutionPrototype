@@ -48,6 +48,7 @@ public class Attack : MonoBehaviour
             }
             passiveCreature.GetComponent<EnemiesAttributes>().life -= damageDealt;
             PlayerModel.CurrentModel.attacked += damageDealt;
+            Debug.Log("Current Model 'attacked' value increased by " + damageDealt+".\nCurrent 'attacked' is: "+PlayerModel.CurrentModel.attacked);
 
             StartCoroutine(FlashCloud(attackSprite));
             StartCoroutine(FinishAttack(attackSprite, angrySprite));

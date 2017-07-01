@@ -6,7 +6,17 @@ public class IgnoreAttack : MonoBehaviour
 {
     public void IgnoreAttackClick()
     {
-        PlayerModel.CurrentModel.ran++;
+        GameObject enemy = GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy;
+        if (enemy)
+        {
+            EnemiesAutonomousBehavior enemyBehaviour = enemy.GetComponent<EnemiesAutonomousBehavior>();
+            if (!enemyBehaviour.ran)
+            {
+                PlayerModel.CurrentModel.ran++;
+                Debug.Log("Current Model 'ran' value increased by 1.\nCurrent 'ran' is: " + PlayerModel.CurrentModel.ran);
+                enemyBehaviour.counterAttacked = true;
+            }
+        }
         CounterCombatHandler counterHandler = GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>();
         GameObject enemyToIgnore = counterHandler.approachingEnemy;
         counterHandler.ignoredEnemy.Add(enemyToIgnore);

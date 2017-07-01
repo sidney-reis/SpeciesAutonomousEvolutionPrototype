@@ -15,6 +15,7 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
     public bool huntingFood = false;
     public bool foundFood = false;
     public bool counterAttacked = false;
+    public bool ran = false;
     public bool running = false;
     public int hitByEnemy = 0;
     public GameObject enemyCreatureHit;
@@ -120,14 +121,17 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
             {
                 if (obj)
                 {
-                    creatureHunting = (int)(obj.GetComponent<FoodMarks>().speciesHunting[species]);
-                    if ((creatureHunting == -1 || creatureHunting == character) && (closestObject == null))
+                    if (obj.GetComponent<FoodMarks>())
                     {
-                        closestObject = obj;
-                    }
-                    else if ((creatureHunting == -1 || creatureHunting == character) && (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position)))
-                    {
-                        closestObject = obj;
+                        creatureHunting = (int)(obj.GetComponent<FoodMarks>().speciesHunting[species]);
+                        if ((creatureHunting == -1 || creatureHunting == character) && (closestObject == null))
+                        {
+                            closestObject = obj;
+                        }
+                        else if ((creatureHunting == -1 || creatureHunting == character) && (Vector3.Distance(transform.position, obj.transform.position) <= Vector3.Distance(transform.position, closestObject.transform.position)))
+                        {
+                            closestObject = obj;
+                        }
                     }
                 }
             }
@@ -557,14 +561,15 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         if (attackTimes == 0)
         {
             cancelTimeout++;
+            counterAttacked = true;
             stopAttack();
         }
         lockAttack = false;
 
-        if(GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy == gameObject)
-        {
-            StartCoroutine(RemoveFromApproachingEnemy());
-        }
+        //if(GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy == gameObject)
+        //{
+        //    StartCoroutine(RemoveFromApproachingEnemy(closestEnemy.obj));
+        //}
 
         if (closestEnemy != null)
         {
@@ -582,19 +587,21 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
         }
     }
 
-    IEnumerator RemoveFromApproachingEnemy()
+    IEnumerator RemoveFromApproachingEnemy(GameObject closEnem)
     {
+        yield return new WaitForSeconds(4);
         if (GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy == gameObject)
         {
-            yield return new WaitForSeconds(3);
             GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy = null;
 
-            if (!counterAttacked)
+            if (!counterAttacked && !ran && (GameObject.Find("PlayerCreatures/"+PlayerInfo.selectedCreature.ToString()) == closEnem) && !attributes.dying)
             {
                 PlayerModel.CurrentModel.ran++;
+                Debug.Log("Current Model 'ran' value increased by 1.\nCurrent 'ran' is: " + PlayerModel.CurrentModel.ran);
             }
+            counterAttacked = false;
+            ran = false;
         }
-        counterAttacked = false;
     }
 
     IEnumerator TimeoutAttack()
@@ -624,6 +631,11 @@ public class EnemiesAutonomousBehavior : MonoBehaviour
 
     private void stopAttack()
     {
+        if (GameObject.Find("CounterMenuCanvas").GetComponent<CounterCombatHandler>().approachingEnemy == gameObject)
+        {
+            StartCoroutine(RemoveFromApproachingEnemy(closestEnemy.obj));
+        }
+        
         if (agent.enabled == true)
         {
             agent.Stop();

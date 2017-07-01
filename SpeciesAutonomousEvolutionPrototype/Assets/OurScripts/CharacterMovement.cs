@@ -44,7 +44,9 @@ public class CharacterMovement : MonoBehaviour {
         {
             if (attributes.hungry >= 150)
             {
+                Debug.Log("hungry meter: " + attributes.hungry);
                 PlayerModel.CurrentModel.foods++;
+                Debug.Log("Current Model 'foods' value increased by 1.\nCurrent 'foods' is: " + PlayerModel.CurrentModel.foods);
             }
         }
 

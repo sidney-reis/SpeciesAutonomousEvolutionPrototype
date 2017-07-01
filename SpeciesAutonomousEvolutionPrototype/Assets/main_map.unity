@@ -1016,6 +1016,7 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
+  attackingEnemies: []
 --- !u!208 &105838277
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -3496,6 +3497,7 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
+  attackingEnemies: []
 --- !u!208 &474619724
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -4002,7 +4004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &519857531
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5030,6 +5032,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &638276708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5436,6 +5439,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &711562903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5804,6 +5808,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &753457977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6026,6 +6031,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &756922921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7064,6 +7070,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &910443150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8355,6 +8362,7 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
+  attackingEnemies: []
 --- !u!195 &1120682871
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8541,6 +8549,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1178477039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8870,6 +8879,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1193338444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10670,6 +10680,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1373642373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12250,6 +12261,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1624798551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12758,6 +12770,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1666012949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13031,6 +13044,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1677255195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13816,6 +13830,7 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
+  attackingEnemies: []
 --- !u!208 &1767975196
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -14807,6 +14822,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1939026616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15049,6 +15065,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1941566594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15326,6 +15343,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1953214478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15653,6 +15671,7 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
+  attackingEnemies: []
 --- !u!208 &1958068351
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -15811,6 +15830,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &1986587046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16432,6 +16452,7 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   sprite: {fileID: 0}
   closestObject: {fileID: 0}
+  attackingEnemies: []
 --- !u!208 &2010389132
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -16587,6 +16608,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &2020064392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17156,6 +17178,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &2059780299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17331,7 +17354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &2071542654
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17495,6 +17518,7 @@ MonoBehaviour:
   enemyRunningFrom: {fileID: 0}
   cancelTimeout: 0
   attackTimes: 0
+  attackingEnemies: []
 --- !u!114 &2079516992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17745,7 +17769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2129794892
 MonoBehaviour:
   m_ObjectHideFlags: 0

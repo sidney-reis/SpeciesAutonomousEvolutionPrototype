@@ -11,26 +11,28 @@ public class SpeciesSellector : MonoBehaviour {
             {
                 if (hitInfo.transform.gameObject.tag == "ControllableSpecies")
                 {
-                    Debug.Log("Selecting Character");
+                    //Debug.Log("Selecting Character");
                     PlayerInfo.selectedCreature = int.Parse(hitInfo.transform.gameObject.name);
                 }
             }
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            int currentCreature = PlayerInfo.selectedCreature + 1;
-            while(GameObject.Find("PlayerCreatures/"+currentCreature.ToString()) == null)
+            GameObject currentCreature = GameObject.Find("PlayerCreatures/" +PlayerInfo.selectedCreature);
+            if (currentCreature == null)
             {
-                if (currentCreature == PlayerInfo.playerCreaturesCount)
-                {
-                    currentCreature = 0;
-                }
-                else
-                {
-                    currentCreature++;
-                }
+                PlayerInfo.selectedCreature = int.Parse(GameObject.Find("PlayerCreatures").transform.GetChild(0).name);
             }
-            PlayerInfo.selectedCreature = currentCreature;
+            else if(currentCreature.transform.GetSiblingIndex() == currentCreature.transform.parent.childCount-1)
+            {
+                PlayerInfo.selectedCreature = int.Parse(GameObject.Find("PlayerCreatures").transform.GetChild(0).name);
+            }
+            else
+            {
+                Transform nextChild = currentCreature.transform.parent.GetChild(currentCreature.transform.GetSiblingIndex() + 1);
+                PlayerInfo.selectedCreature = int.Parse(nextChild.name);
+            }
+            
         }
     }
 }
